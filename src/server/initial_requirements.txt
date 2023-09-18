@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+passlib
+beanie
+bcrypt
+pydantic[email]
+pyjwt
