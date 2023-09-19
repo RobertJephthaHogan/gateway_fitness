@@ -80,6 +80,12 @@ export function SignUp() {
                         className="signup-field"
                     />
                 </div>
+                <div>
+                    <span className="terms-text">
+                        By creating an account, you agree to our <br/>
+                        Privacy Policy and Terms of Use.
+                    </span>
+                </div>
                 <div className="signup-btn-container">
                     <Button
                         className="signup-btn"

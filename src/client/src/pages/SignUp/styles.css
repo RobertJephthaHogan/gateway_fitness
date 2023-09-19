@@ -24,7 +24,8 @@
 
 .signup-field {
     border-radius: 0px;
-    margin: 10px 0px
+    margin: 10px 0px;
+    min-width: 300px;
 }
 
 .signup-password-field {
@@ -35,7 +36,7 @@
 .signup-btn-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px
+    margin-top: 30px
 }
 
 .signup-btn {
@@ -50,4 +51,9 @@
     background-color: var(--secondary-red);
     color: #ffffff !important;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.terms-text {
+    color: #ffffff;
+    font-size: 10px;
 }
