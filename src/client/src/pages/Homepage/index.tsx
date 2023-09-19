@@ -1,11 +1,11 @@
-import TopBar from "../../components/HomepageHeader";
+import HomepageHeader from "../../components/HomepageHeader";
 
 
 
 export function Homepage() {
     return (
         <div>
-            <TopBar/>
+            <HomepageHeader/>
             Homepage Body here
         </div>
     )

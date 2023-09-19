@@ -1,8 +1,12 @@
 import React from 'react'
 import './styles.css'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function HomepageHeader() {
+
+    const navigate = useNavigate();
+
 
     return (
         <div className='hp-header'>
@@ -22,22 +26,22 @@ export default function HomepageHeader() {
                 </div>
             </div>
             <div className='hp-header-center hp-header-cell'>
-                <div className='hp-header-center-cell'>
+                <div className='hp-header-center-cell' onClick={() => navigate('/')}>
                     <span className='hp-header-center-text'>
                         Home
                     </span>
                 </div>
-                <div className='hp-header-center-cell'>
+                <div className='hp-header-center-cell' onClick={() => navigate('/about')}>
                     <span className='hp-header-center-text'>
                         About
                     </span>
                 </div>
-                <div className='hp-header-center-cell'>
+                <div className='hp-header-center-cell' onClick={() => navigate('/services')}>
                     <span className='hp-header-center-text'>
                         Services
                     </span>
                 </div>
-                <div className='hp-header-center-cell'>
+                <div className='hp-header-center-cell'  onClick={() => navigate('/products')}>
                     <span className='hp-header-center-text'>
                         Products
                     </span>
