@@ -30,3 +30,9 @@
 @import './base/loaders.css';
 @import './base/text.css';
  */
+
+
+ :root {
+    --primary-red: #ff4242;
+    --secondary-red: #cd3535;
+  }

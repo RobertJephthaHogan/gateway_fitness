@@ -1,0 +1,48 @@
+
+
+.hp-landing {
+    background-image: url('../../assets/images/gym_background.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 80vh;
+}
+
+.hp-landing-content {
+    padding-left: 20vw;
+    padding-top: 20vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.landing-title {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.landing-subtitle {
+    margin-top: 20px;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.hp-btn {
+    border-radius: 0;
+    border: none;
+    margin-right: 20px;
+    background-color: var(--primary-red);
+    color: #ffffff;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease; 
+}
+
+.hp-btn:hover {
+    background-color: var(--secondary-red);
+    color: #ffffff !important;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.landing-btn-row {
+    margin-top: 20px;
+}
