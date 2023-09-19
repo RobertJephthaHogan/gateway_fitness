@@ -1,9 +1,13 @@
 import { Button } from "antd";
 import HomepageHeader from "../../components/HomepageHeader";
 import './styles.css'
+import { useNavigate } from "react-router-dom";
 
 
 export function Homepage() {
+
+    const navigate = useNavigate();
+
     return (
         <div>
             <HomepageHeader/>
@@ -18,11 +22,13 @@ export function Homepage() {
                     <div className="landing-btn-row">
                         <Button
                             className="hp-btn"
+                            onClick={() => navigate('/signup')}
                         >
                             Get Started
                         </Button>
                         <Button
                             className="hp-btn"
+                            onClick={() => navigate('/login')}
                         >
                             Login
                         </Button>

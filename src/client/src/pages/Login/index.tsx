@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { userService } from "../../services"
 import './styles.css'
+import { Button, Input } from "antd"
 
 
 export function Login() {
@@ -34,41 +35,33 @@ export function Login() {
 
     return (
         <div className="login-component">
-            <div className="left-side">
-
-            </div>
-            <div className="right-side">
-                <div className='login_access_panel'>
-                    <form onSubmit={onSubmitLogin}>
-                        <div className="form-row">
-                            <input
-                                name="username"
-                                id="username"
-                                type="text"
-                                onChange={(e) => handleLoginInfoChange(e?.target?.value, 'username')}
-                                className='mr-1'
-                            >  
-                            </input>
-                        </div>
-                        <div className="form-row">
-                            <input
-                                name="password"
-                                id="password"
-                                type="text"
-                                onChange={(e) => handleLoginInfoChange(e?.target?.value, 'password')}
-                                className='mr-1'
-                            >
-                            </input>
-                        </div>
-                        <div className="flex jc-sb">
-                            <button className="hcp" type="submit">
-                                Submit
-                            </button>
-                            <div>
-                                <span className='forgot_password_text'>Forgot Password?</span>
-                            </div>
-                        </div>
-                    </form>
+            <div className="login-content">
+                <div className="login-content-title-wrapper">
+                    <span className="login-content-title">Log in</span>
+                </div>
+                <div>
+                    <Input
+                        placeholder="Email Address"
+                        className="login-email-field"
+                    />
+                </div>
+                <div>
+                    <Input
+                        placeholder="Password"
+                        className="login-password-field"
+                    />
+                </div>
+                <div>
+                    <span className="forgot-password-text">
+                        Forgot Password?
+                    </span>
+                </div>
+                <div className="login-btn-container">
+                    <Button
+                        className="login-btn"
+                    >
+                        Login
+                    </Button>
                 </div>
             </div>
         </div>
