@@ -35,6 +35,27 @@ export function Homepage() {
                     </div>
                 </div>
             </div>
+            <div className="what-we-do-section">
+                <div className="wwd-left">
+                    <span className="wwd-title">What We Do</span>
+                    <span className="wwd-large">Take Your Health And Physique <br/>To The Next Level</span>
+                    <span className="wwd-sub">We provide online tools and services to help you obtain your dream physique. </span>
+                    <div className="wwd-left-btm-row">
+                        <div className="wwd-left-btm-text-container">
+                            <span className="wwd-left-btm-text">Workout Planning <br/> & Tracking</span>
+                        </div>
+                        <div className="wwd-left-btm-text-container">
+                            <span className="wwd-left-btm-text">Workout Planning <br/> & Tracking</span>
+                        </div>
+                        <div className="wwd-left-btm-text-container">
+                            <span className="wwd-left-btm-text">Workout Planning <br/> & Tracking</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="wwd-right">
+                    a
+                </div>
+            </div>
         </div>
     )
 }
