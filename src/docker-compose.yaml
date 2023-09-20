@@ -1,15 +1,15 @@
 version: '3'
 services:
-  orderly_server:
+  gateway_fitness_server:
     build:
       context: ./server
     ports:
       - "8003:8003"
-    container_name: orderly_server
+    container_name: gateway_fitness_server
 
-  orderly_client:
+  gateway_fitness_client:
     build:
       context: ./client
     ports:
       - "3003:3003"
-    container_name: orderly_client
+    container_name: gateway_fitness_client
