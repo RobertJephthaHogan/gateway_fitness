@@ -64,7 +64,7 @@
     margin: 100px;
     width: 100%;
     background-color: #ffffff;
-    height: 100%;
+    height: auto;
 }
 
 .wwd-title {
@@ -97,4 +97,8 @@
 .wwd-left-btm-text {
     color: #ffffff;
     font-weight: 700;
+}
+
+.platform-section {
+
 }

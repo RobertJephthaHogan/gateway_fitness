@@ -2,6 +2,7 @@ import { Button } from "antd";
 import HomepageHeader from "../../components/HomepageHeader";
 import './styles.css'
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 
 export function Homepage() {
@@ -56,6 +57,10 @@ export function Homepage() {
                     a
                 </div>
             </div>
+            <div className="platform-section">
+                platform
+            </div>
+            <Footer/>
         </div>
     )
 }
