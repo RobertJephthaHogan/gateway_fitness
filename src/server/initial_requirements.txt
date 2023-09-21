@@ -4,4 +4,5 @@ passlib
 beanie
 bcrypt
 pydantic[email]
+pydantic-settings
 pyjwt
