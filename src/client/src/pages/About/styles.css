@@ -1,0 +1,40 @@
+
+
+
+.about-component {
+    width: 100%;
+    height: 100vh;
+}
+
+.about-component-content-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.about-component-content {
+    max-width: 1000px !important;
+    width: 1000px !important;
+    height: 100%;
+}
+
+.top-banner-wrapper {
+    width: 100%;
+}
+
+.top-banner {
+    background-color: #dfdfdf;
+    min-height: 150px;
+    margin: 30px
+}
+
+.about-title {
+    font-size: 30px;
+}
+
+.about-title-wrapper {
+    padding: 20px;
+}
+
+.about-description-wrapper {
+    padding: 20px;
+}
