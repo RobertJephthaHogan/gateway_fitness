@@ -44,3 +44,123 @@
 .tiers-title {
     font-size: 30px;
 }
+
+.tier-row {
+    width: 100%;
+    padding: 20px 0px
+}
+
+.tier-card {
+    width: 100%;
+    height: 350px;
+    display: flex;
+}
+
+.tier-card-left {
+    width: 100%;
+    background-color: #2d2d2d;
+}
+
+.tier-card-right {
+    width: 100%;
+    background-color: #dfdfdf;
+    position: relative;
+}
+
+.tier-title-container {
+    padding: 20px;
+}
+
+.tier-title {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.tier-subtitle-container {
+    padding-left: 20px;
+}
+
+.tier-subtitle {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.tier-price-container {
+    padding-left: 20px;
+    padding-top: 40px;
+    display: flex;
+}
+
+.tier-price-main {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 80px;
+}
+
+.tier-price-additionals {
+    padding-top: 30px;
+    padding-left: 10px;
+}
+
+.tier-price-cents {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.tier-price-monthly-container {
+    padding-top: 5px
+}
+
+.tier-price-monthly {
+    color: #ffffff;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.tiers-space {
+    height: 50px
+}
+
+.tier-card-right-title-container {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.tier-card-right-title {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.tier-card-right-list-container {
+    padding-left: 20px;
+}
+
+.tier-card-right-list {
+    margin: 0px;
+    padding-top: 5px;
+    padding-left: 50px !important;
+}
+
+.tier-card-right-description-container {
+    padding-left: 20px;
+    padding-top: 20px;
+    margin-top: 80px;
+    width: 90%;
+}
+
+.tier-card-right-description {
+    font-size: 18px;
+}
+
+.tier-card-right-top {
+    position: absolute;
+    top: 0;
+}
+
+.tier-card-right-bottom {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 30px;
+}
