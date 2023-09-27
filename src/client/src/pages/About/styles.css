@@ -24,7 +24,9 @@
 .top-banner {
     background-color: #dfdfdf;
     min-height: 150px;
-    margin: 30px
+    margin: 30px 0px;
+    padding-bottom: 30px;
+    padding-top: 10px;
 }
 
 .about-title {
@@ -32,9 +34,59 @@
 }
 
 .about-title-wrapper {
-    padding: 20px;
+    padding: 10px 40px;
 }
 
 .about-description-wrapper {
-    padding: 20px;
+    padding: 10px 40px;
+}
+
+.our-approach-title {
+    font-size: 30px;
+}
+
+.approach-row {
+    width: 100%;
+    display: flex;
+    height: 300px;
+}
+
+.approach-row-text-left {
+    width: 100%;
+}
+
+.approach-row-image-right {
+    background-color: #dfdfdf;
+    width: 100%;
+}
+
+
+.approach-row-top-text-container {
+    margin-bottom: 20px;
+}
+
+
+.approach-row-top-text {
+    color: #727272;
+    font-weight: 700;
+}
+
+.approach-row-mid-text-container {
+    width: 70%;
+    max-width: 70%;
+    margin-bottom: 20px;
+}
+
+.approach-row-mid-text {
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.approach-row-bottom-text-container {
+    width: 90%
+}
+
+
+.appr-space {
+    height: 50px
 }

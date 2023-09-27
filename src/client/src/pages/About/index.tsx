@@ -30,6 +30,39 @@ export default function About() {
                         </div>
                     </div>
 
+                    <div className='our-approach-section'>
+                        <div>
+                            <span className='our-approach-title'>
+                                Our Approach
+                            </span>
+                        </div>
+                        <div className='appr-space'>
+
+                        </div>
+                        <div className='approach-row'>
+                            <div className='approach-row-text-left'>
+                                <div className='approach-row-top-text-container'>
+                                    <span className='approach-row-top-text'>
+                                        1. Provide A Platform
+                                    </span>
+                                </div>
+                                <div className='approach-row-mid-text-container'>
+                                    <span className='approach-row-mid-text'>
+                                        Provide a platform with high-tech tracking tools for nutrition and workouts
+                                    </span>
+                                </div>
+                                <div  className='approach-row-bottom-text-container'>
+                                    <span className='approach-row-bottom-text'>
+                                        We’ve created a high-tech fitness platform with ergonomic tools for planning and tracking your workouts and your nutrition. We provide a free “self-managed” tier, in addition to our premium tiers that include our tailored features and templates.
+                                    </span>
+                                </div>
+                            </div>
+                            <div className='approach-row-image-right'>
+                                
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
