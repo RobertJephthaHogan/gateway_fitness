@@ -60,7 +60,6 @@
     width: 100%;
 }
 
-
 .approach-row-top-text-container {
     margin-bottom: 20px;
 }
@@ -86,7 +85,28 @@
     width: 90%
 }
 
-
 .appr-space {
     height: 50px
+}
+
+.approach-row-image-left {
+    background-color: #dfdfdf;
+    width: 100%;
+}
+
+.approach-row-text-right {
+    width: 100%;
+}
+
+.approach-row-text-right-container {
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.approach-row-text-left-container {
+    padding-top: 20px;
+}
+
+.spce-btm {
+    height: 200px
 }
