@@ -1,13 +1,22 @@
 import React from 'react'
 import './styles.css'
+import { useNavigate } from 'react-router-dom'
+import { FacebookOutlined, InstagramOutlined, TwitterOutlined, YoutubeOutlined } from '@ant-design/icons';
 
 
 export default function Footer() {
 
+    const navigate = useNavigate()
+
+    const handleNavigate = (destination: string) => {
+        window.scrollTo(0, 0);
+        navigate(destination);
+    };
+
     return (
         <div className='footer-component'>
             <div className='footer-content'>
-                <div className='footer-left'>
+                <div className='footer-left' onClick={() => handleNavigate('/')}>
                     <div>
                         <span className='footer-title-text-bold'>Gateway</span>
                         <span className='footer-title-text-light'>Fitness</span>
@@ -41,10 +50,11 @@ export default function Footer() {
                             Follow Us
                         </span>
                     </div>
-                    <div>
-                        <div>
-                            fb
-                        </div>
+                    <div className='icon-row'>
+                        <FacebookOutlined className='footer-icon'/>
+                        <TwitterOutlined className='footer-icon'/>
+                        <YoutubeOutlined className='footer-icon'/>
+                        <InstagramOutlined className='footer-icon'/>
                     </div>
                 </div>
             </div>

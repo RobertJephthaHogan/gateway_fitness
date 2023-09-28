@@ -1,6 +1,7 @@
 import React from 'react'
 import HomepageHeader from '../../components/HomepageHeader'
 import './styles.css'
+import Footer from '../../components/Footer'
 
 
 
@@ -215,7 +216,8 @@ export default function Services() {
 
 
                 </div>
-            </div>            
+            </div>
+            <Footer/>
         </div>
     )
 }

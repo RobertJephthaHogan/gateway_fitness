@@ -1,6 +1,7 @@
 import React from 'react'
 import HomepageHeader from '../../components/HomepageHeader'
 import './styles.css'
+import Footer from '../../components/Footer'
 
 
 
@@ -114,12 +115,11 @@ export default function About() {
                         </div>
                     </div>
 
-                    <div className='spce-btm'>
-
-                    </div>
-
+                    <div className='spce-btm'></div>
+                    
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }

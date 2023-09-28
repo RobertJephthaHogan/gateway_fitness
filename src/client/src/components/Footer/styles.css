@@ -48,3 +48,31 @@
     font-weight: 700;
     font-size: 25px;
 }
+
+.footer-left {
+
+}
+
+
+.footer-left:hover {
+    cursor: pointer;
+}
+
+.icon-row {
+    margin-top: 10px;
+    display: flex;
+}
+
+.ic {
+    color: #ffffff;
+}
+
+.footer-icon {
+    color: #ffffff;
+    font-size: 30px;
+    margin-right: 10px
+}
+
+.footer-icon:hover {
+    cursor: pointer;
+}
