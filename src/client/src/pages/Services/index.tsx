@@ -31,6 +31,7 @@ export default function Services() {
                     </div>
 
                     <div className='service-tier-section'>
+                        <div className='tiers-space'></div>
 
                         <div>
                             <span className='tiers-title'>
@@ -204,6 +205,10 @@ export default function Services() {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div className='tiers-space-btm'>
+
                         </div>
 
                     </div>
