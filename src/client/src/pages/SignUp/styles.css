@@ -57,3 +57,11 @@
     color: #ffffff;
     font-size: 10px;
 }
+
+.signup-form {
+    all: unset !important;
+}
+
+.signup-form-item {
+    margin: 0
+}
