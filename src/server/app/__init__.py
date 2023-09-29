@@ -9,7 +9,12 @@ from app.services.user import router as UserRouter
 app = FastAPI()
 
 # Apply CORS Middleware / Allow Origins
-origins = [ 'http://localhost:3000' ]
+origins = [ 
+           'http://localhost:3000',
+           'http://localhost:3003',
+           'https://gateway-fitness.roberthogan.io',
+           'https://www.gateway-fitness.roberthogan.io' 
+        ]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
