@@ -18,6 +18,7 @@ export function SignUp() {
         let workingObj = userInfo;
         workingObj[field] = value
         setUserInfo(workingObj)
+        console.log('workingObj', workingObj)
     }
 
 
@@ -29,16 +30,13 @@ export function SignUp() {
             'lastName': userInfo?.lastName,
             'email': userInfo?.email,
             'password': userInfo?.password,
-            'phoneNumber': userInfo?.phoneNumber,
             'role': 'user',
-            'todos': [],
-            'accountsInfo': [],
-            'events': []
         }
 
         let to_add : User  = JSON.parse(JSON.stringify(user_to_add_obj));
   
         userService.createNewUser(to_add).then((resp: any) => {
+            console.log('resp', resp)
             navigate('/login')
         })
     }
@@ -54,30 +52,35 @@ export function SignUp() {
                     <Input
                         placeholder="First Name"
                         className="signup-field"
+                        onChange={(e) => onUserInfoChange(e?.target?.value, 'firstName')}
                     />
                 </div>
                 <div>
                     <Input
                         placeholder="Last Name"
                         className="signup-field"
+                        onChange={(e) => onUserInfoChange(e?.target?.value, 'lastName')}
                     />
                 </div>
                 <div>
                     <Input
                         placeholder="Email Address"
                         className="signup-field"
+                        onChange={(e) => onUserInfoChange(e?.target?.value, 'email')}
                     />
                 </div>
                 <div>
                     <Input
                         placeholder="Password"
                         className="signup-field"
+                        onChange={(e) => onUserInfoChange(e?.target?.value, 'password')}
                     />
                 </div>
                 <div>
                     <Input
                         placeholder="Confirm Password"
                         className="signup-field"
+                        onChange={(e) => onUserInfoChange(e?.target?.value, 'confirmPassword')}
                     />
                 </div>
                 <div>

@@ -10,10 +10,6 @@ class User(Document):
     lastName: str = Field(...)
     email: EmailStr = Field(...)
     password: str = Field(...)
-    phoneNumber: str = Field(...)
-    todos: list = Field(...)
-    events: list = Field(...)
-    accountsInfo: list = Field(...)
     role: str = Field(...)
 
     class Settings:
@@ -27,10 +23,6 @@ class User(Document):
                 "lastName": "Doe",
                 "email": "user@user.dev",
                 "password": "password",
-                "phoneNumber": "345-555-5555#",
-                "todos": ["one", "two"],
-                "events": ["one", "two"],
-                "accountsInfo": ["one", "two"],
                 "role": "user"
             }
         }
@@ -52,10 +44,6 @@ class UserData(BaseModel):
     lastName: str = Field(...)
     email: EmailStr = Field(...)
     password: str = Field(...)
-    phoneNumber: str = Field(...)
-    todos: list = Field(...)
-    events: list = Field(...)
-    accountsInfo: list = Field(...)
     role: str = Field(...)
 
     class Config:
@@ -66,10 +54,6 @@ class UserData(BaseModel):
                 "lastName": "Doe",
                 "email": "user@user.dev",
                 "password": "password",
-                "phoneNumber": "345-555-5555#",
-                "todos": ["one", "two"],
-                "events": ["one", "two"],
-                "accountsInfo": ["one", "two"],
                 "role": "user"
             }
         }
@@ -81,10 +65,6 @@ class UpdateUserModel(BaseModel):
     lastName: Optional[str]
     email: Optional[EmailStr]
     password: Optional[str]
-    phoneNumber: Optional[str]
-    todos: Optional[list]
-    events: Optional[list]
-    accountsInfo: Optional[list]
     role: Optional[str]
 
     class Config:
@@ -95,10 +75,6 @@ class UpdateUserModel(BaseModel):
                 "lastName": "Doe",
                 "email": "user@user.dev",
                 "password": "password",
-                "phoneNumber": "345-555-5555#",
-                "todos": ["one", "two"],
-                "events": ["one", "two"],
-                "accountsInfo": ["one", "two"],
                 "role": "user"
             }
         }
