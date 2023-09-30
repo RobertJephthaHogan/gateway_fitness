@@ -6,6 +6,8 @@ import { ErrorBoundary } from "../components/ErrorBoundary";
 import About from "../pages/About";
 import Services from "../pages/Services";
 import Welcome from "../pages/Welcome";
+import MainLayout from "../Layouts/MainLayout";
+import Dashboard from "../pages/Dashboard";
 
 
 
@@ -41,4 +43,15 @@ export const router = createBrowserRouter([
       ],
 	  // ToDo Add Dashboard And Layout somewhere here
     },
+	{
+		path: '/',
+		element: <MainLayout/>,
+		errorElement:<ErrorBoundary />,
+		children: [
+			{
+				path: "/dashboard",
+				element: <Dashboard />,
+			},
+		]	
+	},
   ]);
