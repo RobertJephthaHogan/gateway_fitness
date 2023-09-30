@@ -1,5 +1,3 @@
-
-
 import { createBrowserRouter } from "react-router-dom";
 import { Homepage } from "../pages/Homepage";
 import { Login } from "../pages/Login";
@@ -7,6 +5,7 @@ import { SignUp } from "../pages/SignUp";
 import { ErrorBoundary } from "../components/ErrorBoundary";
 import About from "../pages/About";
 import Services from "../pages/Services";
+import Welcome from "../pages/Welcome";
 
 
 
@@ -20,12 +19,12 @@ export const router = createBrowserRouter([
             element: <Homepage />,
         },
         {
-          path: "/about",
-          element: <About />,
+			path: "/about",
+			element: <About />,
         },
         {
-          path: "/services",
-          element: <Services />,
+			path: "/services",
+			element: <Services />,
         },
         {
             path: "/login",
@@ -35,6 +34,10 @@ export const router = createBrowserRouter([
             path: "/signup",
             element: <SignUp />,
         },
+        {
+			path: "/welcome",
+			element: <Welcome />,
+      	},
       ],
     },
   ]);

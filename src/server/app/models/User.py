@@ -39,7 +39,7 @@ class UserSignIn(HTTPBasicCredentials):
 
 
 class UserData(BaseModel):
-    id: Optional[str]
+    id: Optional[str] 
     firstName: str = Field(...)
     lastName: str = Field(...)
     email: EmailStr = Field(...)

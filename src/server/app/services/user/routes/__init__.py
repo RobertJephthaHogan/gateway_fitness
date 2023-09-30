@@ -47,6 +47,7 @@ class UserRouter:
             )
         user.password = hash_helper.encrypt(user.password)
         new_user = await DatabaseOperations.UserOperations.add_user(user)
+        print('new_user', new_user)
         return new_user
 
 

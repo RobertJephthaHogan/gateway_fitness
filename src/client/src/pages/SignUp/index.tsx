@@ -21,6 +21,10 @@ export function SignUp() {
         console.log('workingObj', workingObj)
     }
 
+    function navigateTo(to: any) {
+        navigate(to)
+    }
+
 
     function onSubmitSignup(new_user_data: any) {
         new_user_data.preventDefault()
@@ -43,6 +47,37 @@ export function SignUp() {
 
     function onFinish(data: any) {
         console.log('data', data)
+        //data.preventDefault()
+
+        const user_to_add_obj = {
+            'id': new ObjectID().toString(),
+            'firstName': data?.firstName,
+            'lastName': data?.lastName,
+            'email': data?.email,
+            'password': data?.password,
+            'role': 'user',
+        }
+
+        let to_add : User  = JSON.parse(JSON.stringify(user_to_add_obj));
+  
+        console.log('to_add', to_add)
+
+        userService.createNewUser(to_add).then((resp: any) => {
+            console.log('resp', resp)
+
+            if (resp?.status === 200) {
+                
+                console.log('success!')
+                navigate('/welcome')
+                setTimeout(() => navigateTo('/'), 3000);
+
+            } else {
+                console.log('error creating new user!')
+            }
+
+            //navigate('/login')
+        })
+
     }
 
 
