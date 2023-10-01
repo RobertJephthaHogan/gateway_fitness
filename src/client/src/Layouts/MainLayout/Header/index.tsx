@@ -1,11 +1,11 @@
 import React from "react";
-
+import './styles.css'
 
 
 export default function LayoutHeader() {
 
     return (
-        <div>
+        <div className="layout-header">
             Header
         </div>
     )

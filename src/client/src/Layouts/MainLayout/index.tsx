@@ -8,9 +8,9 @@ import { Outlet } from "react-router-dom";
 export default function() {
 
     return (
-        <div>
+        <div className="main-layout">
             <SideBar/>
-            <div>
+            <div className="layout-body">
                 <LayoutHeader/>
                 <Outlet/>
             </div>
