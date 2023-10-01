@@ -9,9 +9,10 @@ export default function() {
 
     return (
         <div className="main-layout">
-            <SideBar/>
+            <LayoutHeader/>
+            
             <div className="layout-body">
-                <LayoutHeader/>
+                <SideBar/>
                 <Outlet/>
             </div>
         </div>

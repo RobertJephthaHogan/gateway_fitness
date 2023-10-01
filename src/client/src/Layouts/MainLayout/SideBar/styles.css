@@ -4,7 +4,7 @@
 
 
 .sidebar {
-    height: 100vh;
+    height: calc(100vh - var(--layout-header-height-w-border) );
     width: 200px;
     border-right: 1px solid #dfdfdf;
 }
