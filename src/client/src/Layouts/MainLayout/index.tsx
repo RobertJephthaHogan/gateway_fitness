@@ -10,7 +10,7 @@ export default function() {
     return (
         <div className="main-layout">
             <LayoutHeader/>
-            
+
             <div className="layout-body">
                 <SideBar/>
                 <Outlet/>

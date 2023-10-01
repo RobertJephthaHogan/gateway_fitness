@@ -2,8 +2,32 @@
 
 
 
+
 .layout-header {
     width: 100%;
     border-bottom: 1px solid #dfdfdf;
     height: var(--layout-header-height);
+    background-color: #000000;
+}
+
+.lo-header-title-bold {
+    font-size: 25px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.lo-header-title-light {
+    font-size: 25px;
+    font-weight: 200;
+    color: #ffffff;
+}
+
+.lo-header-subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.layout-header-left {
+    padding-left: 20px;
 }
