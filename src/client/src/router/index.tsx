@@ -8,6 +8,10 @@ import Services from "../pages/Services";
 import Welcome from "../pages/Welcome";
 import MainLayout from "../Layouts/MainLayout";
 import Dashboard from "../pages/Dashboard";
+import UserWorkouts from "../pages/UserWorkouts";
+import UserNutrition from "../pages/UserNutrition";
+import WorkoutPlans from "../pages/WorkoutPlans";
+import NutritionPlans from "../pages/Nutrition Plans";
 
 
 
@@ -51,6 +55,22 @@ export const router = createBrowserRouter([
 			{
 				path: "/dashboard",
 				element: <Dashboard />,
+			},
+            {
+				path: "/my-workouts",
+				element: <UserWorkouts />,
+			},
+            {
+				path: "/my-nutrition",
+				element: <UserNutrition />,
+			},
+            {
+				path: "/workout-plans",
+				element: <WorkoutPlans />,
+			},
+            {
+				path: "/nutrition-plans",
+				element: <NutritionPlans />,
 			},
 		]	
 	},
