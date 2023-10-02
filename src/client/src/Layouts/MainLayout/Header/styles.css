@@ -5,7 +5,7 @@
 
 .layout-header {
     width: 100%;
-    border-bottom: 1px solid #dfdfdf;
+    /* border-bottom: 1px solid #dfdfdf; */
     height: var(--layout-header-height);
     background-color: #000000;
     display: flex;
