@@ -52,9 +52,17 @@ export function Homepage() {
                             <span className="wwd-left-btm-text">Goal Oriented <br/>Workout  & Nutrition <br/>Plans</span>
                         </div>
                     </div>
+                    <div className="wwd-btn-row">
+                        <Button
+                            className="hp-btn"
+                            onClick={() => navigate('/services')}
+                        >
+                            See Our Services
+                        </Button>
+                    </div>
                 </div>
                 <div className="wwd-right">
-                    a
+                    
                 </div>
             </div>
             <div className="platform-section">
