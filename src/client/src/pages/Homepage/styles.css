@@ -105,3 +105,12 @@
 .platform-section {
 
 }
+
+.txt-center {
+    text-align: center;
+}
+
+.wwd-btn-row {
+    padding-top: 30px;
+    padding-left: 180px;
+}

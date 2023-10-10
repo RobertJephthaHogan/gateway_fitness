@@ -42,19 +42,27 @@ export function Homepage() {
                     <span className="wwd-large">Take Your Health And Physique <br/>To The Next Level</span>
                     <span className="wwd-sub">We provide online tools and services to help you obtain your dream physique. </span>
                     <div className="wwd-left-btm-row">
-                        <div className="wwd-left-btm-text-container">
+                        <div className="wwd-left-btm-text-container txt-center">
                             <span className="wwd-left-btm-text">Workout Planning <br/> & Tracking</span>
                         </div>
-                        <div className="wwd-left-btm-text-container">
-                            <span className="wwd-left-btm-text">Workout Planning <br/> & Tracking</span>
+                        <div className="wwd-left-btm-text-container txt-center">
+                            <span className="wwd-left-btm-text">Nutrition Planning <br/> & Tracking</span>
                         </div>
-                        <div className="wwd-left-btm-text-container">
-                            <span className="wwd-left-btm-text">Workout Planning <br/> & Tracking</span>
+                        <div className="wwd-left-btm-text-container txt-center">
+                            <span className="wwd-left-btm-text">Goal Oriented <br/>Workout  & Nutrition <br/>Plans</span>
                         </div>
+                    </div>
+                    <div className="wwd-btn-row">
+                        <Button
+                            className="hp-btn"
+                            onClick={() => navigate('/services')}
+                        >
+                            See Our Services
+                        </Button>
                     </div>
                 </div>
                 <div className="wwd-right">
-                    a
+                    
                 </div>
             </div>
             <div className="platform-section">
