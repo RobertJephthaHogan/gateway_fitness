@@ -41,11 +41,11 @@ export default function HomepageHeader() {
                         Services
                     </span>
                 </div>
-                <div className='hp-header-center-cell'  onClick={() => navigate('/products')}>
+                {/* <div className='hp-header-center-cell'  onClick={() => navigate('/products')}>
                     <span className='hp-header-center-text'>
                         Products
                     </span>
-                </div>
+                </div> */}
             </div>
             <div className='hp-header-right hp-header-cell'>
                 Hp header right

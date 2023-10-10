@@ -9,6 +9,11 @@ export function Homepage() {
 
     const navigate = useNavigate();
 
+    function goToAndScrollToTop(path: string) {
+        navigate(path)
+        window.scrollTo(0, 0)
+    }
+
     return (
         <div>
             <HomepageHeader/>
@@ -55,7 +60,7 @@ export function Homepage() {
                     <div className="wwd-btn-row">
                         <Button
                             className="hp-btn"
-                            onClick={() => navigate('/services')}
+                            onClick={() => goToAndScrollToTop('/services')}
                         >
                             See Our Services
                         </Button>
@@ -65,8 +70,56 @@ export function Homepage() {
                     
                 </div>
             </div>
-            <div className="platform-section">
-                platform
+            <div className="about-section">
+                <div className="about-section-content">
+                    <div className="about-us-title-container">
+                        <span className="about-us-title">
+                            About Us
+                        </span>
+                    </div>
+                    <div className="about-us-large-text-container">
+                        <span className="about-us-large-text">
+                            We Believe Fitness Is The Gateway <br/> To An Awesome Life.
+                        </span>
+                    </div>
+                    <div className="about-us-description-container">
+                        <span className="about-us-description">
+                        Here at Gateway Fitness we believe that fitness is the gateway to an awesome life. We provide online tools to help 
+                        <br/> you easily track your workouts and nutrition, tailored workout and nutrition plans based on your goals, and 
+                        <br/> supplements to help you speed up your progress.
+                        </span>
+                    </div>
+                    <div className="about-us-approach-container">
+                        <span className="about-us-approach">
+                            Our Approach:
+                        </span>
+                    </div>
+                    <div className="about-us-approach-steps-container">
+                        <div className="approach-step-text-container">
+                            <span className="approach-step-text">
+                                1. Provide A Platform
+                            </span>
+                        </div>
+                        <div className="approach-step-text-container">
+                            <span className="approach-step-text">
+                                2. Make it Customizable
+                            </span>
+                        </div>
+                        <div className="approach-step-text-container">
+                            <span className="approach-step-text">
+                                3. Provide Online Trainers
+                            </span>
+                        </div>
+                    </div>
+                    <div className="about-us-btn-row">
+                        <Button
+                            className="hp-btn"
+                            onClick={() => goToAndScrollToTop('/about')}
+                        >
+                            See More About Us
+                        </Button>
+                    </div>
+                </div>
             </div>
             <Footer/>
         </div>
