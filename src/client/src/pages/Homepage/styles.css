@@ -114,3 +114,86 @@
     padding-top: 30px;
     padding-left: 180px;
 }
+
+.about-section {
+    background-color: #3c3c3c;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.about-section-content {
+
+}
+
+.about-us-title-container {
+    display: flex;
+    justify-content: center;
+}
+
+.about-us-title {
+    color: #ff4242;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.about-us-large-text-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.about-us-large-text {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.about-us-description-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.about-us-description {
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+}
+
+.about-us-approach-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.about-us-approach {
+    color: #ff4242;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.about-us-approach-steps-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.approach-step-text-container {
+    padding: 15px;
+}
+
+.approach-step-text {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.about-us-btn-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

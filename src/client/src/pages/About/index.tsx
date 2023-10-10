@@ -21,7 +21,7 @@ export default function About() {
                                 </span>
                             </div>
                             <div className='about-description-wrapper'>
-                                <span className='about-us-description'>
+                                <span className='about-us-description-txt'>
                                     Here at Gateway Fitness we believe that fitness is the gateway to an awesome life.  
                                     We provide online tools to help you easily track your workouts and nutrition, 
                                     tailored workout and nutrition plans based on your goals, 
