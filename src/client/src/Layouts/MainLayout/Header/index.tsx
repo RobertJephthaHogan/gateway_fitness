@@ -1,6 +1,7 @@
 import React from "react";
 import './styles.css'
 import { useNavigate } from "react-router-dom";
+import { MenuOutlined } from "@ant-design/icons";
 
 
 export default function LayoutHeader() {
@@ -31,7 +32,7 @@ export default function LayoutHeader() {
 
             </div>
             <div className='layout-header-right layout-header-cell'>
-                Hp header right
+                <MenuOutlined className="header-menu-icon"/>
             </div>
 
         </div>
