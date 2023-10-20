@@ -38,6 +38,12 @@ export function Homepage() {
                         >
                             Login
                         </Button>
+                        <Button
+                            className="hp-btn"
+                            onClick={() => navigate('/dashboard')}
+                        >
+                            Dashboard
+                        </Button>
                     </div>
                 </div>
             </div>
