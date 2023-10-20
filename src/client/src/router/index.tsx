@@ -13,6 +13,7 @@ import UserNutrition from "../pages/UserNutrition";
 import WorkoutPlans from "../pages/WorkoutPlans";
 import NutritionPlans from "../pages/Nutrition Plans";
 import ProtectedRoutes from "./ProtectedRoutes";
+import Settings from "../pages/Settings";
 
 
 
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
 					{
 						path: "/nutrition-plans",
 						element: <NutritionPlans />,
+					},
+					{
+						path: "/settings",
+						element: <Settings />,
 					},
 				],
 			  },

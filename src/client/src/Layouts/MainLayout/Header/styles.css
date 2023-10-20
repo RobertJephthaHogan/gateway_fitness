@@ -13,6 +13,7 @@
  
 .layout-header-cell {
     width: 100%;
+    display: flex;
     align-items: center;
     align-content: center;
 }
@@ -48,4 +49,18 @@
 
 .header-left-title-light {
     font-weight: 300
+}
+
+.header-menu-icon{
+    color: #ffffff;
+}
+
+.header-menu-icon:hover {
+    cursor: pointer;
+}
+
+.layout-header-right {
+    display: flex;
+    justify-content: end;
+    margin-right: 20px;
 }
