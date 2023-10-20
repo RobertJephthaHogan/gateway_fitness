@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom"
 import { userService } from "../../services"
 import './styles.css'
 import { Button, Form, Input } from "antd"
+import { store } from "../../redux/store"
+import userActions from "../../redux/actions/user"
 
 
 export function Login() {
@@ -11,17 +13,16 @@ export function Login() {
     const navigate = useNavigate()
 
     
-    function dispatchLoginData(resp: any) {
-        console.log('resp', resp)
-		//store.dispatch(userActions.login(resp))
-    }
-
-    function onFinish(e : any) {
-        console.log('e', e)
-        // userService.loginUser(loginInfo).then((resp: any) => {
-		// 	dispatchLoginData(resp.data)
-		// 	navigate('/dashboard')
-        // })
+    function onFinish(data : any) {
+        console.log('data', data)
+        userService.loginUser(data)
+            .then((resp: any) => {
+                store.dispatch(userActions.login(resp?.data))
+                navigate('/dashboard')
+            })
+            .catch((er: any) => {
+                console.error('Error logging in user', er)
+            })
     }
 
 
@@ -35,7 +36,7 @@ export function Login() {
                     onFinish={onFinish}
                 >
                     <div>
-                        <Form.Item name="email" rules={[{ required: true }]} className="login-form-item">
+                        <Form.Item name="username" rules={[{ required: true }]} className="login-form-item">
                             <Input
                                 placeholder="Email Address"
                                 className="login-email-field"
