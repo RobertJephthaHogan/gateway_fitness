@@ -25,29 +25,8 @@ export function SignUp() {
         navigate(to)
     }
 
-
-    function onSubmitSignup(new_user_data: any) {
-        new_user_data.preventDefault()
-        const user_to_add_obj = {
-            'id': new ObjectID().toString(),
-            'firstName': userInfo?.firstName,
-            'lastName': userInfo?.lastName,
-            'email': userInfo?.email,
-            'password': userInfo?.password,
-            'role': 'user',
-        }
-
-        let to_add : User  = JSON.parse(JSON.stringify(user_to_add_obj));
-  
-        userService.createNewUser(to_add).then((resp: any) => {
-            console.log('resp', resp)
-            navigate('/login')
-        })
-    }
-
     function onFinish(data: any) {
         console.log('data', data)
-        //data.preventDefault()
 
         const user_to_add_obj = {
             'id': new ObjectID().toString(),
