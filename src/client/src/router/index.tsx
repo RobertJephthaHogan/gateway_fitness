@@ -53,25 +53,32 @@ export const router = createBrowserRouter([
 		errorElement:<ErrorBoundary />,
 		children: [
 			{
-				path: "/dashboard",
-				element: <Dashboard />,
-			},
-            {
-				path: "/my-workouts",
-				element: <UserWorkouts />,
-			},
-            {
-				path: "/my-nutrition",
-				element: <UserNutrition />,
-			},
-            {
-				path: "/workout-plans",
-				element: <WorkoutPlans />,
-			},
-            {
-				path: "/nutrition-plans",
-				element: <NutritionPlans />,
-			},
+				path: "/",
+				element: <MainLayout />,
+				errorElement:<ErrorBoundary />,
+				children: [
+					{
+						path: "/dashboard",
+						element: <Dashboard />,
+					},
+					{
+						path: "/my-workouts",
+						element: <UserWorkouts />,
+					},
+					{
+						path: "/my-nutrition",
+						element: <UserNutrition />,
+					},
+					{
+						path: "/workout-plans",
+						element: <WorkoutPlans />,
+					},
+					{
+						path: "/nutrition-plans",
+						element: <NutritionPlans />,
+					},
+				],
+			  },
 		],
 	  },
   ]);
