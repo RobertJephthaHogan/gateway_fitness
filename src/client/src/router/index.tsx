@@ -12,6 +12,7 @@ import UserWorkouts from "../pages/UserWorkouts";
 import UserNutrition from "../pages/UserNutrition";
 import WorkoutPlans from "../pages/WorkoutPlans";
 import NutritionPlans from "../pages/Nutrition Plans";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 
 
@@ -45,11 +46,10 @@ export const router = createBrowserRouter([
 			element: <Welcome />,
       	},
       ],
-	  // ToDo Add Dashboard And Layout somewhere here
     },
 	{
-		path: '/',
-		element: <MainLayout/>,
+		path: "/",
+		element: <ProtectedRoutes />,
 		errorElement:<ErrorBoundary />,
 		children: [
 			{
@@ -72,6 +72,6 @@ export const router = createBrowserRouter([
 				path: "/nutrition-plans",
 				element: <NutritionPlans />,
 			},
-		]	
-	},
+		],
+	  },
   ]);
