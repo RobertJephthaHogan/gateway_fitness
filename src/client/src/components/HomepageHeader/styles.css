@@ -38,6 +38,10 @@
     padding-left: 20px;
 }
 
+.hp-header-left-wrapper:hover {
+    cursor: pointer;
+}
+
 .header-left-title-text {
     color: #ffffff;
     font-size: 25px;

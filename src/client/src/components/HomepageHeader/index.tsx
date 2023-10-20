@@ -11,7 +11,10 @@ export default function HomepageHeader() {
     return (
         <div className='hp-header'>
             <div className='hp-header-left hp-header-cell'>
-                <div className='hp-header-left-wrapper'>
+                <div 
+                    className='hp-header-left-wrapper'
+                    onClick={() => navigate('/')}
+                >
                     <span className='header-left-title-text'>
                         <span className='header-left-title-bold'>
                             Gateway
