@@ -1,0 +1,18 @@
+
+
+.dashboard {
+    width: 100%;
+}
+
+.calendar-and-card-container {
+    display: flex;
+    width: 100%;
+}
+
+.calendar-container {
+    width: 70%;
+}
+
+.card-container {
+    width: 30%;
+}
