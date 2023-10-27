@@ -2,5 +2,42 @@
 
 
 .calendar {
-    border: 1px solid #dfdfdf
+    border: 1px solid #dfdfdf;
+    min-height: 500px;
+}
+
+.calendar-top-bar {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    background-color: #000000;
+}
+
+.calendar-date-bar {
+    height: 25px;
+    background-color: #3f3f3f;
+}
+
+.calendar-top-bar-left {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding-left: 20px;
+    width: 100%;
+}
+
+.calendar-top-bar-right {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    align-content: center;
+    padding-right: 20px;
+}
+
+.calendar-date-text {
+    color: #ffffff;
+}
+.calendar-datepicker {
+    margin: 0px 10px;
 }
