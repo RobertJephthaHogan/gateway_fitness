@@ -1,5 +1,6 @@
 import React from 'react'
 import './styles.css'
+import Calendar from '../../components/Calendar'
 
 export default function Dashboard() {
 
@@ -7,7 +8,7 @@ export default function Dashboard() {
         <div className='dashboard'>
             <div className='calendar-and-card-container'>
                 <div className='calendar-container'>
-                    Calendar Container
+                    <Calendar/>
                 </div>
                 <div className='card-container'>
                     Card Container
