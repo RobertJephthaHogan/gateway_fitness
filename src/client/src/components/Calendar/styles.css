@@ -16,6 +16,7 @@
 .calendar-date-bar {
     height: 25px;
     background-color: #3f3f3f;
+    display: flex;
 }
 
 .calendar-top-bar-left {
@@ -38,6 +39,17 @@
 .calendar-date-text {
     color: #ffffff;
 }
+
 .calendar-datepicker {
     margin: 0px 10px;
+}
+
+.date-bar-cell {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.date-cell-text {
+    color: #ffffff;
 }
