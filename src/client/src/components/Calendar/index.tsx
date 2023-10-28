@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './styles.css'
 import { Button, DatePicker } from 'antd'
 import LeftOutlined from '@ant-design/icons/LeftOutlined'
 import RightOutlined from '@ant-design/icons/RightOutlined'
+import dayjs from 'dayjs'
 
 
 
 export default function Calendar() {
+
+    const [selectedDate, setSelectedDate] = useState<any>(dayjs())
+
+    const handleDateChange = (value: any) => {
+        console.log('value', value.format('YYYY-MM-DD'))
+        setSelectedDate(value)
+    }
+
 
     return (
         <div className='calendar'>
@@ -21,10 +30,12 @@ export default function Calendar() {
                         <LeftOutlined/>
                     </Button>
                     <DatePicker 
+                        value={selectedDate}
                         size='small'
                         //onChange={onChange} 
                         picker="week" 
                         className='calendar-datepicker'
+                        onChange={handleDateChange}
                     />
                     <Button size='small'>
                         <RightOutlined/>
@@ -32,7 +43,7 @@ export default function Calendar() {
                 </div>
             </div>
             <div className='calendar-date-bar'>
-
+            
             </div>
             Calendar
         </div>
