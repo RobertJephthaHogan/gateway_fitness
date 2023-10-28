@@ -29,6 +29,14 @@ export default function Calendar() {
         return dateArray.map((d: any) => dayjs(d).format('ddd - MM/DD'));
     };
 
+    const incrementWeek = () => {
+        setSelectedDate(dayjs(selectedDate.add(1, 'week')))
+    }
+
+    const decrementWeek = () => {
+        setSelectedDate(dayjs(selectedDate.subtract(1, 'week')))
+    }
+
     const generateWeekDates = () => {
 
         const dayOfWeek = new Date(selectedDate).getDay()
@@ -73,7 +81,7 @@ export default function Calendar() {
                     </span>
                 </div>
                 <div className='calendar-top-bar-right'>
-                    <Button size='small'>
+                    <Button size='small' onClick={decrementWeek}>
                         <LeftOutlined/>
                     </Button>
                     <DatePicker 
@@ -83,7 +91,7 @@ export default function Calendar() {
                         className='calendar-datepicker'
                         onChange={handleDateChange}
                     />
-                    <Button size='small'>
+                    <Button size='small' onClick={incrementWeek}>
                         <RightOutlined/>
                     </Button>
                 </div>
@@ -100,7 +108,18 @@ export default function Calendar() {
                     }) || []
                 }
             </div>
-            Calendar
+            <div className='calendar-body'>
+                {
+                    weekViewDates?.map((d: any) => {
+
+                        return (
+                            <div className='calendar-body-column'>
+                                <span className=''>{d}</span>
+                            </div>
+                        )
+                    }) || []
+                }
+            </div>
         </div>
     )
 }

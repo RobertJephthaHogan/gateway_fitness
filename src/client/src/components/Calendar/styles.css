@@ -53,3 +53,13 @@
 .date-cell-text {
     color: #ffffff;
 }
+
+.calendar-body {
+    display: flex;
+    min-height: 475px;
+}
+
+.calendar-body-column {
+    width: 100%;
+    border: 1px solid #dfdfdf;
+}
