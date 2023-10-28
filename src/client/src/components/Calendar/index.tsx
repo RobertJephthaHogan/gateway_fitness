@@ -4,6 +4,7 @@ import { Button, DatePicker } from 'antd'
 import LeftOutlined from '@ant-design/icons/LeftOutlined'
 import RightOutlined from '@ant-design/icons/RightOutlined'
 import dayjs from 'dayjs'
+import DailySchedule from '../DailySchedule'
 
 
 
@@ -115,6 +116,9 @@ export default function Calendar() {
                         return (
                             <div className='calendar-body-column'>
                                 <span className=''>{d}</span>
+                                <DailySchedule
+                                    selectedCalendarDate={d}
+                                />
                             </div>
                         )
                     }) || []
