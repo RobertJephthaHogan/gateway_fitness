@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .config import initiate_database
 
 from app.services.user import router as UserRouter
+from app.services.meal import router as MealRouter
 
 
 # Create the App
@@ -40,3 +41,4 @@ async def read_root():
 
 
 app.include_router(UserRouter, tags=["User"], prefix="/user")
+app.include_router(MealRouter, tags=["Meal"], prefix="/meal")

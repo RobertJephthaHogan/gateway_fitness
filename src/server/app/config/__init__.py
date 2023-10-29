@@ -6,6 +6,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseSettings
 
 from app.models.User import User
+from app.models.Meal import Meal
 
 
 # Load the environment variables
@@ -32,4 +33,7 @@ class Settings(BaseSettings):
 async def initiate_database():
     client = AsyncIOMotorClient(Settings().DATABASE_URL)
     await init_beanie(database=client.gateway_fitness,
-                        document_models=[User])
+                        document_models=[
+                                            User,
+                                            Meal
+                                        ])
