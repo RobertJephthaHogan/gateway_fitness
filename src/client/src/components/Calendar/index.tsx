@@ -115,7 +115,6 @@ export default function Calendar() {
 
                         return (
                             <div className='calendar-body-column'>
-                                <span className=''>{d}</span>
                                 <DailySchedule
                                     selectedCalendarDate={d}
                                 />
