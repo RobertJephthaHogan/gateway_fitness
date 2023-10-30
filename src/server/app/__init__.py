@@ -4,6 +4,7 @@ from .config import initiate_database
 
 from app.services.user import router as UserRouter
 from app.services.meal import router as MealRouter
+from app.services.snack import router as SnackRouter
 
 
 # Create the App
@@ -42,3 +43,4 @@ async def read_root():
 
 app.include_router(UserRouter, tags=["User"], prefix="/user")
 app.include_router(MealRouter, tags=["Meal"], prefix="/meal")
+app.include_router(SnackRouter, tags=["Snack"], prefix="/snack")
