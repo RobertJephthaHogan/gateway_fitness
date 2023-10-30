@@ -45,7 +45,7 @@ async def get_meals_for_user(user_id):
     response.data = dto
     return json.loads(response.json())
 
-@router.get("/get_all_meals", response_description="Meal data retrieved", response_model=Response)
+@router.get("/get_all", response_description="Meal data retrieved", response_model=Response)
 async def get_meals():
     meals = await MealOperations.retrieve_all_meals()
     if meals:
