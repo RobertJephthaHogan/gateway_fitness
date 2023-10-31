@@ -19,7 +19,7 @@ class Workout(Document):
         schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
-                "title": 'Breakfast',
+                "title": 'Pull Day',
                 "exercises": [],
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
                 "time": "2022-12-22T16:09:23.443Z",
@@ -38,7 +38,7 @@ class UpdateWorkoutModel(BaseModel):
         schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
-                "title": 'Breakfast',
+                "title": 'Push Day',
                 "exercises": [],
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
                 "time": "2022-12-22T16:09:23.443Z",
