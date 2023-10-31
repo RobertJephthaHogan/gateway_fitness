@@ -16,4 +16,13 @@
 
 .card-container {
     width: 30%;
+    padding: 20px;
+}
+
+.card-container-top {
+    height: 50%
+}
+
+.card-container-bottom {
+    height: 50%
 }
