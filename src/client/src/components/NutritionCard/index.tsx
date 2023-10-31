@@ -16,6 +16,25 @@ export default function NutritionCard() {
                     <PlusSquareOutlined className='nc-tb-plus'/>
                 </div>
             </div>
+            <div className='macro-title-bar'>
+                <div className='mtb-left'>
+
+                </div>
+                <div className='mtb-right'>
+                    <span className='macro-title'>
+                        Protein
+                    </span>
+                    <span className='macro-title'>
+                        Carbs
+                    </span>
+                    <span className='macro-title'>
+                        Fats
+                    </span>
+                    <span className='macro-title'>
+                        Calories
+                    </span>
+                </div>
+            </div>
             Nutrition Card
 
         </div>
