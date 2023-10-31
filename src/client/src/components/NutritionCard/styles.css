@@ -1,0 +1,40 @@
+
+
+
+.nutrition-card {
+    background-color: #ffffff;
+    height: 100%;
+    max-height: 100%;
+}
+
+.nutrition-card-topbar {
+    display: flex;
+    padding: 20px;
+}
+
+.nc-topbar-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.nc-topbar-right {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.nc-tb-text {
+    white-space: nowrap;
+}
+
+.nc-tb-title {
+    font-size: 20px;
+}
+
+.nc-tb-sub {
+    font-size: 12px;
+}
+
+.nc-tb-plus {
+    font-size: 20px;
+}
