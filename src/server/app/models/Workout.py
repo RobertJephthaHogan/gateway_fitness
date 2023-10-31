@@ -19,8 +19,8 @@ class Workout(Document):
         schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
-                "title": 'Breakfast',
-                "ingredients": [],
+                "title": 'Pull Day',
+                "exercises": [],
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
                 "time": "2022-12-22T16:09:23.443Z",
             }
@@ -30,7 +30,7 @@ class Workout(Document):
 class UpdateWorkoutModel(BaseModel):
     id: Optional[str]
     title: Optional[str] 
-    ingredients: Optional[list]
+    exercises: Optional[list]
     createdByUserId: Optional[str]
     time: Optional[datetime.datetime]
 
@@ -38,8 +38,8 @@ class UpdateWorkoutModel(BaseModel):
         schema_extra = {
             "example": {
                 "id": "6382e2abc07256ef099af572",
-                "title": 'Breakfast',
-                "ingredients": [],
+                "title": 'Push Day',
+                "exercises": [],
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
                 "time": "2022-12-22T16:09:23.443Z",
             }

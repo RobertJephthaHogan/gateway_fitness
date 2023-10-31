@@ -7,6 +7,9 @@ from pydantic import BaseSettings
 
 from app.models.User import User
 from app.models.Meal import Meal
+from app.models.Snack import Snack
+from app.models.Workout import Workout
+
 
 
 # Load the environment variables
@@ -35,5 +38,7 @@ async def initiate_database():
     await init_beanie(database=client.gateway_fitness,
                         document_models=[
                                             User,
-                                            Meal
+                                            Meal,
+                                            Snack,
+                                            Workout
                                         ])
