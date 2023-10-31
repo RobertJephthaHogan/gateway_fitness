@@ -35,7 +35,50 @@ export default function NutritionCard() {
                     </span>
                 </div>
             </div>
-            Nutrition Card
+            Nutrition Card Content
+
+            <div className='nutrition-card-footer'>
+                <div className='nc-footer-row'>
+                    <div className='nc-footer-row-left'>
+                        <span className='footer-status-title'>
+                            Protein Status:
+                        </span>
+                    </div>
+                    <div className='nc-footer-row-right'>
+                        (progress bar)
+                    </div>
+                </div>
+                <div className='nc-footer-row'>
+                    <div className='nc-footer-row-left'>
+                        <span className='footer-status-title'>
+                            Carb Status:
+                        </span>
+                    </div>
+                    <div className='nc-footer-row-right'>
+                        (progress bar)
+                    </div>
+                </div>
+                <div className='nc-footer-row'>
+                    <div className='nc-footer-row-left'>
+                        <span className='footer-status-title'>
+                            Fat Status:
+                        </span>
+                    </div>
+                    <div className='nc-footer-row-right'>
+                        (progress bar)
+                    </div>
+                </div>
+                <div className='nc-footer-row'>
+                    <div className='nc-footer-row-left'>
+                        <span className='footer-status-title'>
+                            Calories Status:
+                        </span>
+                    </div>
+                    <div className='nc-footer-row-right'>
+                        (progress bar)
+                    </div>
+                </div>
+            </div>
 
         </div>
     )
