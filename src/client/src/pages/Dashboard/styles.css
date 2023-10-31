@@ -2,6 +2,7 @@
 
 .dashboard {
     width: 100%;
+    background-color: #EEEEEE;
 }
 
 .calendar-and-card-container {
@@ -16,4 +17,13 @@
 
 .card-container {
     width: 30%;
+    padding: 20px;
+}
+
+.card-container-top {
+    height: 50%
+}
+
+.card-container-bottom {
+    height: 50%
 }
