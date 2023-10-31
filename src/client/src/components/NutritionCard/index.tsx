@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './styles.css'
 import { PlusSquareOutlined } from '@ant-design/icons'
+import { Modal } from 'antd'
 
 export default function NutritionCard() {
+
+    const [entryModalOpen, setEntryModalOpen] = useState<boolean>(false)
 
     return (
         <div className='nutrition-card'>
@@ -13,7 +16,10 @@ export default function NutritionCard() {
                     <span className='nc-tb-text nc-tb-sub'>Meals Planned: 6 </span>
                 </div>
                 <div className='nc-topbar-right'>
-                    <PlusSquareOutlined className='nc-tb-plus'/>
+                    <PlusSquareOutlined 
+                        className='nc-tb-plus'
+                        onClick={() => setEntryModalOpen(true)}
+                    />
                 </div>
             </div>
             <div className='macro-title-bar'>
@@ -79,6 +85,15 @@ export default function NutritionCard() {
                     </div>
                 </div>
             </div>
+
+            <Modal 
+                title="Add Snack or Meal" 
+                open={entryModalOpen} 
+                //onOk={handleOk} 
+                onCancel={() => setEntryModalOpen(false)}
+            >
+                ToDo: Add Nutrition Form Here
+            </Modal>
 
         </div>
     )
