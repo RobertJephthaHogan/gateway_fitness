@@ -59,6 +59,7 @@ background: #555;
     border-left: #dddddd 1px solid !important;
     border-right: #dddddd 1px solid !important;
     width: 100%;
+    background-color: #ffffff;
 }
 
 .event-tile {
