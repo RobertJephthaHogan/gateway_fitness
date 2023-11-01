@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import './styles.css'
 import { useSelector } from 'react-redux'
-import { Button, DatePicker, Form, Input } from 'antd'
+import { Button, DatePicker, Form, Input, Radio } from 'antd'
 
 
 
 export default function NutritionForm() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
-    const [formValues, setFormValues] = useState<any>()
+    const [formValues, setFormValues] = useState<any>({
+        'nutrition-type': 'meal'
+    })
 
     const handleInputChange = (field: string, value: any) => {
 
@@ -29,6 +31,13 @@ export default function NutritionForm() {
             <Form 
                 onFinish={onFinish}
             >
+                <Radio.Group 
+                    onChange={(e) => handleInputChange('nutrition-type', e?.target?.value)} 
+                    defaultValue={'meal'}
+                >
+                    <Radio value={'meal'}>Meal</Radio>
+                    <Radio value={'snack'}>Snack</Radio>
+                </Radio.Group>
                 <Form.Item
                     name="title"
                     rules={[{ required: true }]}
@@ -61,7 +70,7 @@ export default function NutritionForm() {
                 <div>
                     ToDo: Ingredients component here
                 </div>
-                <div>
+                <div className='submission-button-container'>
                     <Button 
                         //onClick={onFinish}
                         htmlType="submit"
