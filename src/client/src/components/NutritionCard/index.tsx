@@ -1,12 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { PlusSquareOutlined } from '@ant-design/icons'
 import { Modal } from 'antd'
 import NutritionForm from '../forms/NutritionForm'
+import { useSelector } from 'react-redux'
+import { store } from '../../redux/store'
+import mealActions from '../../redux/actions/meal'
 
 export default function NutritionCard() {
 
+    const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const userMeals = useSelector((state: any) => state.meals?.queryResult ?? [])
     const [entryModalOpen, setEntryModalOpen] = useState<boolean>(false)
+
+    
+    useEffect(() => {
+        store.dispatch(mealActions.setMeals(currentUser?._id))
+    }, [currentUser])
 
     return (
         <div className='nutrition-card'>

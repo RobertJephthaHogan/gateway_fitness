@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { useSelector } from 'react-redux'
 import { Button, DatePicker, Form, Input, Radio } from 'antd'
 import { ObjectID } from 'bson'
+import { store } from '../../../redux/store'
+import mealActions from '../../../redux/actions/meal'
 
 
 
@@ -10,8 +12,10 @@ export default function NutritionForm() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [formValues, setFormValues] = useState<any>({
-        'nutritionType': 'meal'
+        'nutritionType': 'meal',
+        'ingredients': []
     })
+
 
     const handleInputChange = (field: string, value: any) => {
         const workingObj = {...formValues}
@@ -30,8 +34,8 @@ export default function NutritionForm() {
             dto['hasBeenConsumed'] = false
 
         if (formValues.nutritionType === 'meal') {
-            console.log('Submitting as Meal')
-            //store.dispatch(mealActions.add(dto))
+            console.log('Submitting as Meal', dto)
+            store.dispatch(mealActions.add(dto))
         }
 
         if (formValues.nutritionType === 'snack') {
