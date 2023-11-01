@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './styles.css'
 import { useSelector } from 'react-redux'
 import { Button, DatePicker, Form, Input, Radio } from 'antd'
+import { ObjectID } from 'bson'
 
 
 
@@ -9,11 +10,10 @@ export default function NutritionForm() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [formValues, setFormValues] = useState<any>({
-        'nutrition-type': 'meal'
+        'nutritionType': 'meal'
     })
 
     const handleInputChange = (field: string, value: any) => {
-
         const workingObj = {...formValues}
         workingObj[field] = value
         console.log('workingObj', workingObj)
@@ -21,8 +21,23 @@ export default function NutritionForm() {
     }
 
     const onFinish = (data: any) => {
-        console.log('data', data)
-        console.log('formValues', formValues)
+        // Using state managed form values for submission for better 
+        // handling over the data
+
+        const dto = {...formValues}
+            dto['id'] = new ObjectID().toString()
+            dto['createdByUserId'] = currentUser?._id
+            dto['hasBeenConsumed'] = false
+
+        if (formValues.nutritionType === 'meal') {
+            console.log('Submitting as Meal')
+            //store.dispatch(mealActions.add(dto))
+        }
+
+        if (formValues.nutritionType === 'snack') {
+            console.log('Submitting as Snack')
+            //store.dispatch(snackActions.add(dto))
+        }
 
     }
 
@@ -31,13 +46,17 @@ export default function NutritionForm() {
             <Form 
                 onFinish={onFinish}
             >
-                <Radio.Group 
-                    onChange={(e) => handleInputChange('nutrition-type', e?.target?.value)} 
-                    defaultValue={'meal'}
+                <Form.Item
+                    name="nutrition-type"
                 >
-                    <Radio value={'meal'}>Meal</Radio>
-                    <Radio value={'snack'}>Snack</Radio>
-                </Radio.Group>
+                    <Radio.Group 
+                        onChange={(e) => handleInputChange('nutritionType', e?.target?.value)} 
+                        defaultValue={'meal'}
+                    >
+                        <Radio value={'meal'}>Meal</Radio>
+                        <Radio value={'snack'}>Snack</Radio>
+                    </Radio.Group>
+                </Form.Item>
                 <Form.Item
                     name="title"
                     rules={[{ required: true }]}
