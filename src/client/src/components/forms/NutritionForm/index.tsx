@@ -87,39 +87,39 @@ export default function NutritionForm() {
 
         return (
             <div>
-                <div className='flex'>
+                <div className='ingredient-input-row'>
                     <Input
                         placeholder='Title'
-                        className='m-1'
+                        className='input-item'
                         onChange={(e) => onIngredientChange(e?.target?.value, 'title')}
                     />
                     <Input
                         placeholder='Serving Size'
-                        className='m-1'
+                        className='input-item'
                         onChange={(e) => onIngredientChange(e?.target?.value, 'servingSize')}
                     />
                     <Input
                         placeholder='Calories'
-                        className='m-1'
+                        className='input-item'
                         onChange={(e) => onIngredientChange(e?.target?.value, 'calories')}
                     />
                     <Input
                         placeholder='Protein'
-                        className='m-1'
+                        className='input-item'
                         onChange={(e) => onIngredientChange(e?.target?.value, 'protein')}
                     />
                     <Input
                         placeholder='Carbs'
-                        className='m-1'
+                        className='input-item'
                         onChange={(e) => onIngredientChange(e?.target?.value, 'carbs')}
                     />
                     <Input
                         placeholder='Fat'
-                        className='m-1'
+                        className='input-item'
                         onChange={(e) => onIngredientChange(e?.target?.value, 'fat')}
                     />
                 </div>
-                <div className='pt-1 pl-4 pr-4'>
+                <div className='add-ingredient-button-wrapper'>
                     <Button className='w-100' size='small' onClick={handleAddIngredient}>
                         Add Ingredient to Intake
                     </Button>
@@ -170,23 +170,23 @@ export default function NutritionForm() {
 
         return (
             <div className='w-100'>
-                <div className='flex w-100'>
-                    <div className='w-100 flex jc-c'>
+                <div className='label-row'>
+                    <div className='label-row-cell'>
                         <h4 className='brdr-b'>title</h4>
                     </div>
-                    <div className='w-100 flex jc-c'>
+                    <div className='label-row-cell'>
                         <h4 className='brdr-b'>servingSize</h4>
                     </div>
-                    <div className='w-100 flex jc-c'>
+                    <div className='label-row-cell'>
                         <h4 className='brdr-b'>calories</h4>
                     </div>
-                    <div className='w-100 flex jc-c'>
+                    <div className='label-row-cell'>
                         <h4 className='brdr-b'>protein</h4>
                     </div>
-                    <div className='w-100 flex jc-c'>
+                    <div className='label-row-cell'>
                         <h4 className='brdr-b'>carbs</h4>
                     </div>
-                    <div className='w-100 flex jc-c'>
+                    <div className='label-row-cell'>
                         <h4 className='brdr-b'>fat</h4>
                     </div>
                 </div>

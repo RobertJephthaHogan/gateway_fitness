@@ -8,3 +8,27 @@
     display: flex;
     justify-content: end;
 }
+
+.ingredient-input-row {
+    display: flex;
+}
+
+.input-item {
+    margin: 5px;
+}
+
+.add-ingredient-button-wrapper {
+    padding-top: 5px;
+    padding: 0px 20px;
+}
+
+.label-row {
+    display: flex;
+    width: 100%;
+}
+
+.label-row-cell {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
