@@ -15,6 +15,7 @@ export default function NutritionForm() {
         'nutritionType': 'meal',
         'ingredients': []
     })
+    const [form] = Form.useForm();
 
 
     const handleInputChange = (field: string, value: any) => {
@@ -36,6 +37,11 @@ export default function NutritionForm() {
         if (formValues.nutritionType === 'meal') {
             console.log('Submitting as Meal', dto)
             store.dispatch(mealActions.add(dto))
+            setFormValues({
+                'nutritionType': 'meal',
+                'ingredients': [],
+            })
+            form.resetFields();
         }
 
         if (formValues.nutritionType === 'snack') {
@@ -48,6 +54,7 @@ export default function NutritionForm() {
     return (
         <div>
             <Form 
+                form={form}
                 onFinish={onFinish}
             >
                 <Form.Item
