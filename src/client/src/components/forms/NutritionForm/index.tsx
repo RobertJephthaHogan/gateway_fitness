@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import './styles.css'
 import { useSelector } from 'react-redux'
-import { Button, DatePicker, Form, Input, Radio } from 'antd'
+import { Button, DatePicker, Empty, Form, Input, Radio } from 'antd'
 import { ObjectID } from 'bson'
 import { store } from '../../../redux/store'
 import mealActions from '../../../redux/actions/meal'
 import snackActions from '../../../redux/actions/snack'
+import PlusOutlined from '@ant-design/icons/PlusOutlined'
 
 
 
 export default function NutritionForm() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const [editingIndex, setEditingIndex] = useState<any>(null)
     const [formValues, setFormValues] = useState<any>({
         'nutritionType': 'meal',
         'ingredients': []
     })
+    const [ingredients, setIngredients] = useState<any>([])
     const [form] = Form.useForm();
 
 
@@ -24,6 +27,12 @@ export default function NutritionForm() {
         workingObj[field] = value
         console.log('workingObj', workingObj)
         setFormValues(workingObj)
+    }
+
+    const addNewIngredient = () => {
+        const workingIngredients = [...ingredients, {}]
+        setIngredients(workingIngredients)
+        setEditingIndex(workingIngredients?.length)
     }
 
     const onFinish = (data: any) => {
@@ -56,6 +65,137 @@ export default function NutritionForm() {
         }
 
     }
+
+    function IngredientInput() {
+
+        const [editingSubject, setEditingSubject] = useState<any>({})
+
+        const onIngredientChange = (value: any, field: string) => {
+            const workingObj = {...editingSubject}
+            workingObj[field] = value
+            console.log('workingObj', workingObj)
+            setEditingSubject(workingObj)
+        }
+
+        const handleAddIngredient = () => {
+            const existing = {...formValues}
+            existing.ingredients = [...existing?.ingredients, editingSubject]
+            setFormValues(existing)
+            setIngredients([])
+            setEditingIndex(null)
+        }
+
+        return (
+            <div>
+                <div className='flex'>
+                    <Input
+                        placeholder='Title'
+                        className='m-1'
+                        onChange={(e) => onIngredientChange(e?.target?.value, 'title')}
+                    />
+                    <Input
+                        placeholder='Serving Size'
+                        className='m-1'
+                        onChange={(e) => onIngredientChange(e?.target?.value, 'servingSize')}
+                    />
+                    <Input
+                        placeholder='Calories'
+                        className='m-1'
+                        onChange={(e) => onIngredientChange(e?.target?.value, 'calories')}
+                    />
+                    <Input
+                        placeholder='Protein'
+                        className='m-1'
+                        onChange={(e) => onIngredientChange(e?.target?.value, 'protein')}
+                    />
+                    <Input
+                        placeholder='Carbs'
+                        className='m-1'
+                        onChange={(e) => onIngredientChange(e?.target?.value, 'carbs')}
+                    />
+                    <Input
+                        placeholder='Fat'
+                        className='m-1'
+                        onChange={(e) => onIngredientChange(e?.target?.value, 'fat')}
+                    />
+                </div>
+                <div className='pt-1 pl-4 pr-4'>
+                    <Button className='w-100' size='small' onClick={handleAddIngredient}>
+                        Add Ingredient to Intake
+                    </Button>
+                </div>
+            </div>
+        )
+    }
+
+    interface IngredientRowProps {
+        ingredientRowData?: any
+    }
+
+    function IngredientRows(props: IngredientRowProps) {
+
+        const [rows, setRows] = useState<any>()
+
+        useMemo(() => {
+
+            const iRows = props?.ingredientRowData?.map((r: any) => {
+                console.log('r', r)
+
+                return (
+                    <div className='flex w-100'>
+                        <div className='w-100 flex jc-c'>
+                            <h5>{r?.title}</h5>
+                        </div>
+                        <div className='w-100 flex jc-c'>
+                            {r?.servingSize}
+                        </div>
+                        <div className='w-100 flex jc-c'>
+                            {r?.calories}
+                        </div>
+                        <div className='w-100 flex jc-c'>
+                            {r?.protein}
+                        </div>
+                        <div className='w-100 flex jc-c'>
+                            {r?.carbs}
+                        </div>
+                        <div className='w-100 flex jc-c'>
+                            {r?.fat}
+                        </div>
+                    </div>
+                )
+            })
+            setRows(iRows)
+        }, [props?.ingredientRowData?.length])
+
+
+        return (
+            <div className='w-100'>
+                <div className='flex w-100'>
+                    <div className='w-100 flex jc-c'>
+                        <h4 className='brdr-b'>title</h4>
+                    </div>
+                    <div className='w-100 flex jc-c'>
+                        <h4 className='brdr-b'>servingSize</h4>
+                    </div>
+                    <div className='w-100 flex jc-c'>
+                        <h4 className='brdr-b'>calories</h4>
+                    </div>
+                    <div className='w-100 flex jc-c'>
+                        <h4 className='brdr-b'>protein</h4>
+                    </div>
+                    <div className='w-100 flex jc-c'>
+                        <h4 className='brdr-b'>carbs</h4>
+                    </div>
+                    <div className='w-100 flex jc-c'>
+                        <h4 className='brdr-b'>fat</h4>
+                    </div>
+                </div>
+                {rows}
+            </div>
+        )
+
+    }
+
 
     return (
         <div>
@@ -104,7 +244,45 @@ export default function NutritionForm() {
                     />
                 </Form.Item>
                 <div>
-                    ToDo: Ingredients component here
+                <div className='p-2'>
+                    <h2>Ingredients:</h2>
+                    <div className='divider'/>
+                    {
+                        formValues?.ingredients?.length
+                        ? (
+                            <IngredientRows
+                                ingredientRowData={formValues?.ingredients}
+                            />
+                        )
+                        : null
+                    }
+                    {
+                        !ingredients?.length 
+                        && !formValues?.ingredients?.length
+                        && <Empty/>
+                    }
+                    {
+                        editingIndex !== null
+                        ? (
+                            <IngredientInput/>
+                        )
+                        : null
+                    }
+                </div>
+                <div className='p-1'>
+                    {
+                        editingIndex === null
+                        ? (
+                            <Button 
+                                className='w-100'
+                                onClick={() => addNewIngredient()}
+                            >
+                                <PlusOutlined/>
+                            </Button>
+                        )
+                        : null
+                    }
+                </div>
                 </div>
                 <div className='submission-button-container'>
                     <Button 
