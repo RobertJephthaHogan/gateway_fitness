@@ -5,6 +5,7 @@ import { Button, DatePicker, Form, Input, Radio } from 'antd'
 import { ObjectID } from 'bson'
 import { store } from '../../../redux/store'
 import mealActions from '../../../redux/actions/meal'
+import snackActions from '../../../redux/actions/snack'
 
 
 
@@ -46,7 +47,12 @@ export default function NutritionForm() {
 
         if (formValues.nutritionType === 'snack') {
             console.log('Submitting as Snack')
-            //store.dispatch(snackActions.add(dto))
+            store.dispatch(snackActions.add(dto))
+            setFormValues({
+                'nutritionType': 'meal',
+                'ingredients': [],
+            })
+            form.resetFields();
         }
 
     }

@@ -10,5 +10,6 @@ export default {
         theme: 'light',
     },
     widgets: {},
-    meals: []
+    meals: [],
+    snacks: [],
 }
