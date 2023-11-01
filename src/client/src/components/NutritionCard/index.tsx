@@ -6,16 +6,19 @@ import NutritionForm from '../forms/NutritionForm'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import mealActions from '../../redux/actions/meal'
+import snackActions from '../../redux/actions/snack'
 
 export default function NutritionCard() {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userMeals = useSelector((state: any) => state.meals?.queryResult ?? [])
+    const userSnacks = useSelector((state: any) => state.snacks?.queryResult ?? [])
     const [entryModalOpen, setEntryModalOpen] = useState<boolean>(false)
 
     
     useEffect(() => {
         store.dispatch(mealActions.setMeals(currentUser?._id))
+        store.dispatch(snackActions.setSnacks(currentUser?._id))
     }, [currentUser])
 
     return (

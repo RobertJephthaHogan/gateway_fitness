@@ -5,7 +5,7 @@ import * as types from '../types'
 
 
 const snackActions = {
-    setSnack: (user_id) => {
+    setSnacks: (user_id) => {
         return async (dispatch) => {
             return new Promise(async function (resolve, reject) {
                 snackService
