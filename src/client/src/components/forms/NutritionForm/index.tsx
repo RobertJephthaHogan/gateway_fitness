@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import './styles.css'
 import { useSelector } from 'react-redux'
-import { DatePicker, Input } from 'antd'
+import { Button, DatePicker, Form, Input } from 'antd'
+
+
 
 export default function NutritionForm() {
 
@@ -16,33 +18,58 @@ export default function NutritionForm() {
         setFormValues(workingObj)
     }
 
-    const onFinish = () => {
+    const onFinish = (data: any) => {
+        console.log('data', data)
+        console.log('formValues', formValues)
 
     }
 
     return (
         <div>
-            <Input
-                placeholder='Title'
-                onChange={
-                    (e) => handleInputChange(
-                        'title', 
-                        e?.target?.value
-                        )
-                }
-            />
-            <DatePicker 
-                showTime
-                onChange={
-                    (v) => handleInputChange(
-                        'time', v?.format('YYYY-MM-DD HH:mm:ss')
-                        )
-                } 
-                className='nutrition-form-datepicker'
-            />
-            <div>
-                ToDo: Ingredients component here
-            </div>
+            <Form 
+                onFinish={onFinish}
+            >
+                <Form.Item
+                    name="title"
+                    rules={[{ required: true }]}
+                >
+                    <Input
+                        placeholder='Title'
+                        onChange={
+                            (e) => handleInputChange(
+                                'title', 
+                                e?.target?.value
+                                )
+                        }
+                    />
+                </Form.Item>
+                <Form.Item
+                    name="time"
+                    rules={[{ required: true }]}
+                >
+                    <DatePicker 
+                        showTime
+                        onChange={
+                            (v) => handleInputChange(
+                                'time', v?.format('YYYY-MM-DD HH:mm:ss')
+                            )
+                        } 
+                        className='nutrition-form-datepicker'
+                        placeholder='Time'
+                    />
+                </Form.Item>
+                <div>
+                    ToDo: Ingredients component here
+                </div>
+                <div>
+                    <Button 
+                        //onClick={onFinish}
+                        htmlType="submit"
+                    >
+                        Submit
+                    </Button>
+                </div>
+            </Form>
         </div>
     )
 }

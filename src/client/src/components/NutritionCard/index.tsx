@@ -92,6 +92,7 @@ export default function NutritionCard() {
                 open={entryModalOpen} 
                 //onOk={handleOk} 
                 onCancel={() => setEntryModalOpen(false)}
+                footer={null}
             >
                 <NutritionForm/>
             </Modal>
