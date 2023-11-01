@@ -22,3 +22,9 @@ export const SET_MEALS = 'SET_MEALS'
 export const ADD_MEAL = 'ADD_MEAL'
 export const DELETE_MEAL = 'DELETE_MEAL'
 export const UPDATE_MEAL = 'UPDATE_MEAL'
+
+// Snacks
+export const SET_SNACKS = 'SET_SNACK'
+export const ADD_SNACK = 'ADD_SNACK'
+export const DELETE_SNACK = 'DELETE_SNACK'
+export const UPDATE_SNACK = 'UPDATE_SNACK'
