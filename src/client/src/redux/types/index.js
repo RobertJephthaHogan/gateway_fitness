@@ -17,3 +17,8 @@ export const HIDE_LOADING = 'HIDE_LOADING'
 export const SHOW_ALERT = 'SHOW_ALERT'
 export const HIDE_ALERT = 'HIDE_ALERT'
 
+// Meals
+export const SET_MEALS = 'SET_MEALS'
+export const ADD_MEAL = 'ADD_MEAL'
+export const DELETE_MEAL = 'DELETE_MEAL'
+export const UPDATE_MEAL = 'UPDATE_MEAL'
