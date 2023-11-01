@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './styles.css'
 import { PlusSquareOutlined } from '@ant-design/icons'
 import { Modal } from 'antd'
+import NutritionForm from '../forms/NutritionForm'
 
 export default function NutritionCard() {
 
@@ -92,7 +93,7 @@ export default function NutritionCard() {
                 //onOk={handleOk} 
                 onCancel={() => setEntryModalOpen(false)}
             >
-                ToDo: Add Nutrition Form Here
+                <NutritionForm/>
             </Modal>
 
         </div>
