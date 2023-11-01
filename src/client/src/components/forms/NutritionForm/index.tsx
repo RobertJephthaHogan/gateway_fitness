@@ -142,23 +142,23 @@ export default function NutritionForm() {
                 console.log('r', r)
 
                 return (
-                    <div className='flex w-100'>
-                        <div className='w-100 flex jc-c'>
+                    <div className='ingredient-row'>
+                        <div className='ingredient-row-cell'>
                             <h5>{r?.title}</h5>
                         </div>
-                        <div className='w-100 flex jc-c'>
+                        <div className='ingredient-row-cell'>
                             {r?.servingSize}
                         </div>
-                        <div className='w-100 flex jc-c'>
+                        <div className='ingredient-row-cell'>
                             {r?.calories}
                         </div>
-                        <div className='w-100 flex jc-c'>
+                        <div className='ingredient-row-cell'>
                             {r?.protein}
                         </div>
-                        <div className='w-100 flex jc-c'>
+                        <div className='ingredient-row-cell'>
                             {r?.carbs}
                         </div>
-                        <div className='w-100 flex jc-c'>
+                        <div className='ingredient-row-cell'>
                             {r?.fat}
                         </div>
                     </div>
