@@ -1,0 +1,10 @@
+
+
+.nutrition-form-datepicker {
+    width: 100%;
+}
+
+.submission-button-container {
+    display: flex;
+    justify-content: end;
+}
