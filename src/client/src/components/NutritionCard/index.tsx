@@ -34,15 +34,17 @@ export default function NutritionCard() {
         });
     }
 
+    function sortByTime(array: any) {
+        return array.sort((a: any, b: any) => a.time - b.time);
+    }
+
     function filterForSelectedDaysNutrition() {
 
         const selectedMeals = filterObjectsByDate(userMeals, selectedDate)
         const selectedSnacks = filterObjectsByDate(userSnacks, selectedDate)
         const aggregatedNutrition = [...selectedMeals, ...selectedSnacks]
-        setSelectedDatesNurtients(aggregatedNutrition)
-
-        console.log('selectedMeals', selectedMeals)
-        console.log('selectedSnacks', selectedSnacks)
+        const sortedNutrients = sortByTime(aggregatedNutrition)
+        setSelectedDatesNurtients(sortedNutrients)
 
     }
 
