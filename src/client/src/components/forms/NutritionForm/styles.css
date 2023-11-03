@@ -4,7 +4,45 @@
     width: 100%;
 }
 
+.ingredient-input-row {
+    display: flex;
+}
+
+.input-item {
+    margin: 5px;
+}
+
+.add-ingredient-button-wrapper {
+    padding-top: 5px;
+    padding: 0px 20px;
+}
+
+.label-row {
+    display: flex;
+    width: 100%;
+}
+
+.label-row-cell {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.ingredient-row {
+    display: flex;
+    width: 100%;
+}
+
+
+.ingredient-row-cell {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .submission-button-container {
     display: flex;
     justify-content: end;
+    margin-top: 20px;
 }
