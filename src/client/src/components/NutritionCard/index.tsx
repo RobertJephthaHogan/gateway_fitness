@@ -13,6 +13,8 @@ export default function NutritionCard() {
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userMeals = useSelector((state: any) => state.meals?.queryResult ?? [])
     const userSnacks = useSelector((state: any) => state.snacks?.queryResult ?? [])
+    const [selectedDate, setSelectedDate] = useState<any>(new Date())
+    const [selectedDatesNutrients, setSelectedDatesNurtients] = useState<any>([])
     const [entryModalOpen, setEntryModalOpen] = useState<boolean>(false)
 
     
@@ -20,6 +22,29 @@ export default function NutritionCard() {
         store.dispatch(mealActions.setMeals(currentUser?._id))
         store.dispatch(snackActions.setSnacks(currentUser?._id))
     }, [currentUser])
+
+    useEffect(() => {
+        const selectedMeals = filterForSelectedDaysNutrition()
+    }, [selectedDate])
+
+    function filterObjectsByDate(array: any, date: any) {
+        return array.filter((obj: any) => {
+            const objDate = new Date(obj.time);
+            return objDate.toDateString() === date.toDateString();
+        });
+    }
+
+    function filterForSelectedDaysNutrition() {
+
+        const selectedMeals = filterObjectsByDate(userMeals, selectedDate)
+        const selectedSnacks = filterObjectsByDate(userSnacks, selectedDate)
+        const aggregatedNutrition = [...selectedMeals, ...selectedSnacks]
+        setSelectedDatesNurtients(aggregatedNutrition)
+
+        console.log('selectedMeals', selectedMeals)
+        console.log('selectedSnacks', selectedSnacks)
+
+    }
 
     return (
         <div className='nutrition-card'>
