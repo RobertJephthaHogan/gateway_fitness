@@ -48,6 +48,30 @@ export default function NutritionCard() {
 
     }
 
+
+    interface NutritionRowProps {
+        nutritionItems?: any
+    }
+
+    function NutritionRows(props: NutritionRowProps) {
+
+        const rows = props.nutritionItems?.map((item: any) => {
+            
+            return (
+                <div>
+                    {item?.title}
+                </div>
+            )
+        })
+
+        return (
+            <div>
+                NutritionRows
+                {rows}
+            </div>
+        )
+    }
+
     return (
         <div className='nutrition-card'>
             <div className='nutrition-card-topbar'>
@@ -82,7 +106,10 @@ export default function NutritionCard() {
                     </span>
                 </div>
             </div>
-            Nutrition Card Content
+            
+            <NutritionRows
+                nutritionItems={selectedDatesNutrients}
+            />
 
             <div className='nutrition-card-footer'>
                 <div className='nc-footer-row'>
