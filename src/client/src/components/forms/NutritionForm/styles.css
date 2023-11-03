@@ -4,11 +4,6 @@
     width: 100%;
 }
 
-.submission-button-container {
-    display: flex;
-    justify-content: end;
-}
-
 .ingredient-input-row {
     display: flex;
 }
@@ -44,4 +39,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.submission-button-container {
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
 }

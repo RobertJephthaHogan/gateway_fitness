@@ -244,45 +244,45 @@ export default function NutritionForm() {
                     />
                 </Form.Item>
                 <div>
-                <div className='p-2'>
-                    <h2>Ingredients:</h2>
-                    <div className='divider'/>
-                    {
-                        formValues?.ingredients?.length
-                        ? (
-                            <IngredientRows
-                                ingredientRowData={formValues?.ingredients}
-                            />
-                        )
-                        : null
-                    }
-                    {
-                        !ingredients?.length 
-                        && !formValues?.ingredients?.length
-                        && <Empty/>
-                    }
-                    {
-                        editingIndex !== null
-                        ? (
-                            <IngredientInput/>
-                        )
-                        : null
-                    }
-                </div>
-                <div className='p-1'>
-                    {
-                        editingIndex === null
-                        ? (
-                            <Button 
-                                className='w-100'
-                                onClick={() => addNewIngredient()}
-                            >
-                                <PlusOutlined/>
-                            </Button>
-                        )
-                        : null
-                    }
-                </div>
+                    <div className='p-2'>
+                        <h2>Ingredients:</h2>
+                        <div className='divider'/>
+                        {
+                            formValues?.ingredients?.length
+                            ? (
+                                <IngredientRows
+                                    ingredientRowData={formValues?.ingredients}
+                                />
+                            )
+                            : null
+                        }
+                        {
+                            !ingredients?.length 
+                            && !formValues?.ingredients?.length
+                            && <Empty/>
+                        }
+                        {
+                            editingIndex !== null
+                            ? (
+                                <IngredientInput/>
+                            )
+                            : null
+                        }
+                    </div>
+                    <div className='p-1'>
+                        {
+                            editingIndex === null
+                            ? (
+                                <Button 
+                                    className='w-100'
+                                    onClick={() => addNewIngredient()}
+                                >
+                                    <PlusOutlined/>
+                                </Button>
+                            )
+                            : null
+                        }
+                    </div>
                 </div>
                 <div className='submission-button-container'>
                     <Button 
