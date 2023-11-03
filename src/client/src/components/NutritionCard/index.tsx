@@ -58,8 +58,29 @@ export default function NutritionCard() {
         const rows = props.nutritionItems?.map((item: any) => {
             
             return (
-                <div>
-                    {item?.title}
+                <div className='nutrition-row'>
+                    <div className='nutrition-row-title-box'>
+                        <div>
+                            {item?.title}
+                        </div>
+                        <div>
+                            {/* TODO: Item Type */}
+                        </div>
+                    </div>
+                    <div className='nutrition-row-macro-box'>
+                        <div>
+                            Protein
+                        </div>
+                        <div>
+                            Carbs
+                        </div>
+                        <div>
+                            Fat
+                        </div>
+                        <div>
+                            Calories
+                        </div>
+                    </div>
                 </div>
             )
         })

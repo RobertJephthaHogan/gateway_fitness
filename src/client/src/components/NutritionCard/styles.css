@@ -94,3 +94,17 @@
     font-size: 12px;
     font-weight: 500;
 }
+
+.nutrition-row {
+    display: flex;
+}
+
+.nutrition-row-title-box {
+    width: 50%;
+}
+
+.nutrition-row-macro-box {
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
