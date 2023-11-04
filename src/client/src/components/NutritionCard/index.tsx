@@ -42,12 +42,25 @@ export default function NutritionCard() {
         return array.sort((a: any, b: any) => a.time - b.time);
     }
 
+    function addKeyValuePair(array: any, key: any, value: any) {
+        const arr = array?.map((obj: any) => {
+            obj[key] = value;
+          return (
+            obj
+          )
+        }) || []
+        return arr;
+    }
+
     function filterForSelectedDaysNutrition() {
 
-        const selectedMeals = filterObjectsByDate(userMeals, selectedDate)
-        const selectedSnacks = filterObjectsByDate(userSnacks, selectedDate)
+        let selectedMeals = filterObjectsByDate(userMeals, selectedDate)
+        let selectedSnacks = filterObjectsByDate(userSnacks, selectedDate)
+        selectedMeals = addKeyValuePair(selectedMeals, 'type', 'meal')
+        selectedSnacks = addKeyValuePair(selectedSnacks, 'type', 'snack')
         const aggregatedNutrition = [...selectedMeals, ...selectedSnacks]
         const sortedNutrients = sortByTime(aggregatedNutrition)
+        console.log('sortedNutrients', sortedNutrients)
         setSelectedDatesNurtients(sortedNutrients)
 
     }
@@ -60,7 +73,7 @@ export default function NutritionCard() {
     function NutritionRows(props: NutritionRowProps) {
 
         function aggregateValues(array: any) {
-            return array.reduce((result: any, obj: any) => {
+            return array?.reduce((result: any, obj: any) => {
               for (let key in obj) {
                 let trimmed = obj[key]
                 trimmed = parseInt(trimmed, 10)
@@ -85,7 +98,7 @@ export default function NutritionCard() {
                             {item?.title}
                         </div>
                         <div>
-                            {/* TODO: Item Type */}
+                            {item?.type}
                         </div>
                     </div>
                     <div className='nutrition-row-macro-box'>
