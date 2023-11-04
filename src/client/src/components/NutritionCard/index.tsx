@@ -76,10 +76,7 @@ export default function NutritionCard() {
 
         const rows = props.nutritionItems?.map((item: any) => {
 
-            console.log('item?.ingredients', item?.ingredients)
-
             const aggregatedNutrientValues = aggregateValues(item?.ingredients)
-            console.log('aggregatedNutrientValues', aggregatedNutrientValues)
             
             return (
                 <div className='nutrition-row'>
