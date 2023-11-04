@@ -19,13 +19,17 @@ export default function NutritionCard() {
 
     
     useEffect(() => {
-        store.dispatch(mealActions.setMeals(currentUser?._id))
-        store.dispatch(snackActions.setSnacks(currentUser?._id))
+        setComponentData()
     }, [currentUser])
 
     useEffect(() => {
         const selectedMeals = filterForSelectedDaysNutrition()
-    }, [selectedDate])
+    }, [selectedDate, userMeals, userSnacks])
+
+    function setComponentData() {
+        store.dispatch(mealActions.setMeals(currentUser?._id))
+        store.dispatch(snackActions.setSnacks(currentUser?._id))
+    }
 
     function filterObjectsByDate(array: any, date: any) {
         return array.filter((obj: any) => {
@@ -201,7 +205,10 @@ export default function NutritionCard() {
                 onCancel={() => setEntryModalOpen(false)}
                 footer={null}
             >
-                <NutritionForm/>
+                <NutritionForm
+                    setComponentData={setComponentData}
+                    setEntryModalOpen={setEntryModalOpen}
+                />
             </Modal>
 
         </div>

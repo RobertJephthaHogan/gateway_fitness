@@ -9,8 +9,12 @@ import snackActions from '../../../redux/actions/snack'
 import PlusOutlined from '@ant-design/icons/PlusOutlined'
 
 
+interface NutritionFormProps {
+    setComponentData?: any
+    setEntryModalOpen?: any
+}
 
-export default function NutritionForm() {
+export default function NutritionForm(props: NutritionFormProps) {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [editingIndex, setEditingIndex] = useState<any>(null)
@@ -63,6 +67,11 @@ export default function NutritionForm() {
             })
             form.resetFields();
         }
+
+        // Set New Meal / Snack items to global state after creation
+        props?.setComponentData()
+        props?.setEntryModalOpen(false)
+        
 
     }
 
