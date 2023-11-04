@@ -55,7 +55,27 @@ export default function NutritionCard() {
 
     function NutritionRows(props: NutritionRowProps) {
 
+        function aggregateValues(array: any) {
+            return array.reduce((result: any, obj: any) => {
+              for (let key in obj) {
+                let trimmed = obj[key]
+                trimmed = parseInt(trimmed, 10)
+                if (result[key]) {
+                    result[key] += trimmed;
+                } else {
+                    result[key] = trimmed;
+                }
+              }
+              return result;
+            }, {});
+          }
+
         const rows = props.nutritionItems?.map((item: any) => {
+
+            console.log('item?.ingredients', item?.ingredients)
+
+            const aggregatedNutrientValues = aggregateValues(item?.ingredients)
+            console.log('aggregatedNutrientValues', aggregatedNutrientValues)
             
             return (
                 <div className='nutrition-row'>
@@ -69,16 +89,16 @@ export default function NutritionCard() {
                     </div>
                     <div className='nutrition-row-macro-box'>
                         <div>
-                            Protein
+                            {aggregatedNutrientValues?.protein}
                         </div>
                         <div>
-                            Carbs
+                            {aggregatedNutrientValues?.carbs}
                         </div>
                         <div>
-                            Fat
+                            {aggregatedNutrientValues?.fat}
                         </div>
                         <div>
-                            Calories
+                            {aggregatedNutrientValues?.calories}
                         </div>
                     </div>
                 </div>
@@ -87,7 +107,6 @@ export default function NutritionCard() {
 
         return (
             <div>
-                NutritionRows
                 {rows}
             </div>
         )
