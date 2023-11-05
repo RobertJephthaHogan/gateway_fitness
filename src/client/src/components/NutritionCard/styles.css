@@ -108,3 +108,9 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
+
+.nutrition-rows-container {
+    height: 100px;
+    max-height: 100px;
+    overflow: scroll;
+}

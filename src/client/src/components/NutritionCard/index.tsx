@@ -120,7 +120,7 @@ export default function NutritionCard() {
         })
 
         return (
-            <div>
+            <div className='nutrition-rows-container'>
                 {rows}
             </div>
         )
