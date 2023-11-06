@@ -98,24 +98,34 @@ export default function NutritionCard() {
                 >
                     <div className='nutrition-row-title-box'>
                         <div>
-                            {item?.title}
+                            <span className='nutrition-row-title'>
+                                {item?.title}
+                            </span>
                         </div>
-                        <div>
+                        <div className='nutrition-row-type'>
                             {item?.type}
                         </div>
                     </div>
                     <div className='nutrition-row-macro-box'>
-                        <div>
-                            {aggregatedNutrientValues?.protein}
+                        <div className='nutrition-row-macro-item'>
+                            <span className='macro-item-text'>
+                                {aggregatedNutrientValues?.protein}
+                            </span>
                         </div>
-                        <div>
-                            {aggregatedNutrientValues?.carbs}
+                        <div className='nutrition-row-macro-item'>
+                            <span className='macro-item-text'>
+                                {aggregatedNutrientValues?.carbs}
+                            </span>
                         </div>
-                        <div>
-                            {aggregatedNutrientValues?.fat}
+                        <div className='nutrition-row-macro-item'>
+                            <span className='macro-item-text'>
+                                {aggregatedNutrientValues?.fat}
+                            </span>
                         </div>
-                        <div>
-                            {aggregatedNutrientValues?.calories}
+                        <div className='nutrition-row-macro-item'>
+                            <span className='macro-item-text'>
+                                {aggregatedNutrientValues?.calories}
+                            </span>
                         </div>
                     </div>
                 </div>
