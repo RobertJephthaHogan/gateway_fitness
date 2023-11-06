@@ -9,8 +9,12 @@ import snackActions from '../../../redux/actions/snack'
 import PlusOutlined from '@ant-design/icons/PlusOutlined'
 
 
+interface NutritionFormProps {
+    setComponentData?: any
+    setEntryModalOpen?: any
+}
 
-export default function NutritionForm() {
+export default function NutritionForm(props: NutritionFormProps) {
 
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const [editingIndex, setEditingIndex] = useState<any>(null)
@@ -25,7 +29,6 @@ export default function NutritionForm() {
     const handleInputChange = (field: string, value: any) => {
         const workingObj = {...formValues}
         workingObj[field] = value
-        console.log('workingObj', workingObj)
         setFormValues(workingObj)
     }
 
@@ -45,7 +48,6 @@ export default function NutritionForm() {
             dto['hasBeenConsumed'] = false
 
         if (formValues.nutritionType === 'meal') {
-            console.log('Submitting as Meal', dto)
             store.dispatch(mealActions.add(dto))
             setFormValues({
                 'nutritionType': 'meal',
@@ -55,7 +57,6 @@ export default function NutritionForm() {
         }
 
         if (formValues.nutritionType === 'snack') {
-            console.log('Submitting as Snack')
             store.dispatch(snackActions.add(dto))
             setFormValues({
                 'nutritionType': 'meal',
@@ -63,6 +64,11 @@ export default function NutritionForm() {
             })
             form.resetFields();
         }
+
+        // Set New Meal / Snack items to global state after creation
+        props?.setComponentData()
+        props?.setEntryModalOpen(false)
+        
 
     }
 
@@ -73,7 +79,6 @@ export default function NutritionForm() {
         const onIngredientChange = (value: any, field: string) => {
             const workingObj = {...editingSubject}
             workingObj[field] = value
-            console.log('workingObj', workingObj)
             setEditingSubject(workingObj)
         }
 
@@ -139,7 +144,6 @@ export default function NutritionForm() {
         useMemo(() => {
 
             const iRows = props?.ingredientRowData?.map((r: any) => {
-                console.log('r', r)
 
                 return (
                     <div className='ingredient-row'>

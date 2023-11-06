@@ -13,13 +13,131 @@ export default function NutritionCard() {
     const currentUser = useSelector((state: any) => state.user?.data ?? [])
     const userMeals = useSelector((state: any) => state.meals?.queryResult ?? [])
     const userSnacks = useSelector((state: any) => state.snacks?.queryResult ?? [])
+    const [selectedDate, setSelectedDate] = useState<any>(new Date())
+    const [selectedDatesNutrients, setSelectedDatesNurtients] = useState<any>([])
     const [entryModalOpen, setEntryModalOpen] = useState<boolean>(false)
 
     
     useEffect(() => {
+        setComponentData()
+    }, [currentUser])
+
+    useEffect(() => {
+        const selectedMeals = filterForSelectedDaysNutrition()
+    }, [selectedDate, userMeals, userSnacks])
+
+    function setComponentData() {
         store.dispatch(mealActions.setMeals(currentUser?._id))
         store.dispatch(snackActions.setSnacks(currentUser?._id))
-    }, [currentUser])
+    }
+
+    function filterObjectsByDate(array: any, date: any) {
+        return array.filter((obj: any) => {
+            const objDate = new Date(obj.time);
+            return objDate.toDateString() === date.toDateString();
+        });
+    }
+
+    function sortByTime(array: any) {
+        return array.sort((a: any, b: any) => a.time - b.time);
+    }
+
+    function addKeyValuePair(array: any, key: any, value: any) {
+        const arr = array?.map((obj: any) => {
+            obj[key] = value;
+          return (
+            obj
+          )
+        }) || []
+        return arr;
+    }
+
+    function filterForSelectedDaysNutrition() {
+
+        let selectedMeals = filterObjectsByDate(userMeals, selectedDate)
+        let selectedSnacks = filterObjectsByDate(userSnacks, selectedDate)
+        selectedMeals = addKeyValuePair(selectedMeals, 'type', 'meal')
+        selectedSnacks = addKeyValuePair(selectedSnacks, 'type', 'snack')
+        const aggregatedNutrition = [...selectedMeals, ...selectedSnacks]
+        const sortedNutrients = sortByTime(aggregatedNutrition)
+        console.log('sortedNutrients', sortedNutrients)
+        setSelectedDatesNurtients(sortedNutrients)
+
+    }
+
+
+    interface NutritionRowProps {
+        nutritionItems?: any
+    }
+
+    function NutritionRows(props: NutritionRowProps) {
+
+        function aggregateValues(array: any) {
+            return array?.reduce((result: any, obj: any) => {
+              for (let key in obj) {
+                let trimmed = obj[key]
+                trimmed = parseInt(trimmed, 10)
+                if (result[key]) {
+                    result[key] += trimmed;
+                } else {
+                    result[key] = trimmed;
+                }
+              }
+              return result;
+            }, {});
+          }
+
+        const rows = props.nutritionItems?.map((item: any, i: any) => {
+
+            const aggregatedNutrientValues = aggregateValues(item?.ingredients)
+            
+            return (
+                <div 
+                    className='nutrition-row'
+                    key={`nutrition-row-${i}`}
+                >
+                    <div className='nutrition-row-title-box'>
+                        <div>
+                            <span className='nutrition-row-title'>
+                                {item?.title}
+                            </span>
+                        </div>
+                        <div className='nutrition-row-type'>
+                            {item?.type}
+                        </div>
+                    </div>
+                    <div className='nutrition-row-macro-box'>
+                        <div className='nutrition-row-macro-item'>
+                            <span className='macro-item-text'>
+                                {aggregatedNutrientValues?.protein}
+                            </span>
+                        </div>
+                        <div className='nutrition-row-macro-item'>
+                            <span className='macro-item-text'>
+                                {aggregatedNutrientValues?.carbs}
+                            </span>
+                        </div>
+                        <div className='nutrition-row-macro-item'>
+                            <span className='macro-item-text'>
+                                {aggregatedNutrientValues?.fat}
+                            </span>
+                        </div>
+                        <div className='nutrition-row-macro-item'>
+                            <span className='macro-item-text'>
+                                {aggregatedNutrientValues?.calories}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            )
+        })
+
+        return (
+            <div className='nutrition-rows-container'>
+                {rows}
+            </div>
+        )
+    }
 
     return (
         <div className='nutrition-card'>
@@ -55,7 +173,10 @@ export default function NutritionCard() {
                     </span>
                 </div>
             </div>
-            Nutrition Card Content
+            
+            <NutritionRows
+                nutritionItems={selectedDatesNutrients}
+            />
 
             <div className='nutrition-card-footer'>
                 <div className='nc-footer-row'>
@@ -107,7 +228,10 @@ export default function NutritionCard() {
                 onCancel={() => setEntryModalOpen(false)}
                 footer={null}
             >
-                <NutritionForm/>
+                <NutritionForm
+                    setComponentData={setComponentData}
+                    setEntryModalOpen={setEntryModalOpen}
+                />
             </Modal>
 
         </div>

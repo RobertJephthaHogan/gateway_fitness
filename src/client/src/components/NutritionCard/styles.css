@@ -94,3 +94,49 @@
     font-size: 12px;
     font-weight: 500;
 }
+
+.nutrition-row {
+    display: flex;
+    border-bottom: 1px solid #CDCDCD;
+}
+
+.nutrition-row-title-box {
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+}
+
+.nutrition-row-title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.nutrition-row-type {
+    font-size: 12px;
+    color: #989898;
+}
+
+.nutrition-row-macro-box {
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.nutrition-rows-container {
+    height: 100px;
+    max-height: 100px;
+    overflow: scroll;
+}
+
+.nutrition-row-macro-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.macro-item-text {
+    font-size: 16px;
+    font-weight: 700;
+}
