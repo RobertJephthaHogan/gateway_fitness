@@ -34,11 +34,12 @@ export default function SideBar() {
     return (
         <div className='sidebar'>
             {
-                menuItems?.map((item: any) => {
+                menuItems?.map((item: any, i: any) => {
                     return (
                         <div 
                             className='sidebar-row'
                             onClick={() => navigate(item?.route)}
+                            key={`sidebar-row-${i}`}
                         >
                             <span className='sidebar-row-title'>{item?.title}</span>
                         </div>
