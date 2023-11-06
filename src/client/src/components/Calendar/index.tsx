@@ -102,7 +102,10 @@ export default function Calendar() {
                     weekViewDates?.map((d: any) => {
 
                         return (
-                            <div className='date-bar-cell'>
+                            <div 
+                                className='date-bar-cell'
+                                key={`date-bar-cell-${d}`}
+                            >
                                 <span className='date-cell-text'>{d}</span>
                             </div>
                         )
@@ -114,7 +117,10 @@ export default function Calendar() {
                     weekViewDates?.map((d: any) => {
 
                         return (
-                            <div className='calendar-body-column'>
+                            <div 
+                                className='calendar-body-column'
+                                key={`calendar-body-column-${d}`}
+                            >
                                 <DailySchedule
                                     selectedCalendarDate={d}
                                 />
