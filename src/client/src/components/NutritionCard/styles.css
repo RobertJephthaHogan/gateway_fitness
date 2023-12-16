@@ -70,6 +70,8 @@
 .macro-title {
     font-size: 12px;
     font-weight: 500;
+    display: flex;
+    justify-content: center;
 }
 
 .nutrition-card-footer {
@@ -110,6 +112,8 @@
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 20px;
+    box-sizing: border-box;
+
 }
 
 .nutrition-row-title {

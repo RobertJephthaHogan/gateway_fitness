@@ -16,7 +16,7 @@ export default function NutritionCard() {
     const [selectedDate, setSelectedDate] = useState<any>(new Date())
     const [selectedDatesNutrients, setSelectedDatesNurtients] = useState<any>([])
     const [entryModalOpen, setEntryModalOpen] = useState<boolean>(false)
-
+    const [nutrientStatus, setNutrientStatus] = useState<any>()
     
     useEffect(() => {
         setComponentData()
@@ -29,6 +29,79 @@ export default function NutritionCard() {
     function setComponentData() {
         store.dispatch(mealActions.setMeals(currentUser?._id))
         store.dispatch(snackActions.setSnacks(currentUser?._id))
+    }
+
+    useEffect(() => {
+        const oNutrients = organizeNutritionData()
+        setNutrientStatus(oNutrients)
+    }, [selectedDatesNutrients])
+
+    function organizeNutritionData() {
+
+        // Aggregate all the ingredients to fond total nutrients for each meal/ snack
+        const organizedNutrients = selectedDatesNutrients?.map((n: any) => {
+            
+            let calories = 0
+            let protein = 0
+            let carbs = 0
+            let fat = 0
+
+            n?.ingredients?.forEach((i: any) => {
+                calories = calories += parseInt(i?.calories, 10)
+                protein = protein += parseInt(i?.protein, 10)
+                carbs = carbs += parseInt(i?.carbs, 10)
+                fat = fat += parseInt(i?.fat, 10)
+            })
+
+            return (
+                {
+                    hasBeenConsumed: n.hasBeenConsumed,
+                    calories,
+                    protein,
+                    carbs,
+                    fat
+                }
+            )
+        }) || []
+
+        let consumed : any = []
+
+        organizedNutrients?.forEach((on: any) => {
+            if (on?.hasBeenConsumed) {
+                consumed.push(on)
+            }
+        })
+
+        const allAggregated = aggregateNutritionValues(organizedNutrients)
+        const consumedAggregated = aggregateNutritionValues(consumed)
+
+        return {
+            totalNutrients: allAggregated,
+            consumedNutrients: consumedAggregated,
+        }
+
+    }
+
+    function aggregateNutritionValues(nutritionEntries: any) {
+        let calories = 0
+        let protein = 0
+        let carbs = 0
+        let fat = 0
+
+        nutritionEntries.forEach((e: any) => {
+            calories = calories += parseInt(e?.calories, 10)
+            protein = protein += parseInt(e?.protein, 10)
+            carbs = carbs += parseInt(e?.carbs, 10)
+            fat = fat += parseInt(e?.fat, 10)
+        })
+
+        return {
+            calories,
+            protein,
+            carbs,
+            fat
+        }
+
     }
 
     function filterObjectsByDate(array: any, date: any) {
@@ -60,7 +133,6 @@ export default function NutritionCard() {
         selectedSnacks = addKeyValuePair(selectedSnacks, 'type', 'snack')
         const aggregatedNutrition = [...selectedMeals, ...selectedSnacks]
         const sortedNutrients = sortByTime(aggregatedNutrition)
-        console.log('sortedNutrients', sortedNutrients)
         setSelectedDatesNurtients(sortedNutrients)
 
     }
@@ -146,7 +218,7 @@ export default function NutritionCard() {
                     <div className='nc-topbar-left'>
                         <span className='nc-tb-text nc-tb-title'>Today's Nutrients</span>
                         <span className='nc-tb-text nc-tb-sub'>Calories Planned : 2750</span>
-                        <span className='nc-tb-text nc-tb-sub'>Meals Planned: 6 </span>
+                        <span className='nc-tb-text nc-tb-sub'>Meals Planned: {selectedDatesNutrients?.length} </span>
                     </div>
                     <div className='nc-topbar-right'>
                         <PlusSquareOutlined 
