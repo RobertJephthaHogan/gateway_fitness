@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
 import { PlusSquareOutlined } from '@ant-design/icons'
-import { Modal } from 'antd'
+import { Modal, Progress } from 'antd'
 import NutritionForm from '../forms/NutritionForm'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
@@ -141,38 +141,41 @@ export default function NutritionCard() {
 
     return (
         <div className='nutrition-card'>
-            <div className='nutrition-card-topbar'>
-                <div className='nc-topbar-left'>
-                    <span className='nc-tb-text nc-tb-title'>Today's Nutrients</span>
-                    <span className='nc-tb-text nc-tb-sub'>Calories Planned : 2750</span>
-                    <span className='nc-tb-text nc-tb-sub'>Meals Planned: 6 </span>
+            <div className='nc-top'>
+                <div className='nutrition-card-topbar'>
+                    <div className='nc-topbar-left'>
+                        <span className='nc-tb-text nc-tb-title'>Today's Nutrients</span>
+                        <span className='nc-tb-text nc-tb-sub'>Calories Planned : 2750</span>
+                        <span className='nc-tb-text nc-tb-sub'>Meals Planned: 6 </span>
+                    </div>
+                    <div className='nc-topbar-right'>
+                        <PlusSquareOutlined 
+                            className='nc-tb-plus'
+                            onClick={() => setEntryModalOpen(true)}
+                        />
+                    </div>
                 </div>
-                <div className='nc-topbar-right'>
-                    <PlusSquareOutlined 
-                        className='nc-tb-plus'
-                        onClick={() => setEntryModalOpen(true)}
-                    />
-                </div>
-            </div>
-            <div className='macro-title-bar'>
-                <div className='mtb-left'>
+                <div className='macro-title-bar'>
+                    <div className='mtb-left'>
 
-                </div>
-                <div className='mtb-right'>
-                    <span className='macro-title'>
-                        Protein
-                    </span>
-                    <span className='macro-title'>
-                        Carbs
-                    </span>
-                    <span className='macro-title'>
-                        Fats
-                    </span>
-                    <span className='macro-title'>
-                        Calories
-                    </span>
+                    </div>
+                    <div className='mtb-right'>
+                        <span className='macro-title'>
+                            Protein
+                        </span>
+                        <span className='macro-title'>
+                            Carbs
+                        </span>
+                        <span className='macro-title'>
+                            Fats
+                        </span>
+                        <span className='macro-title'>
+                            Calories
+                        </span>
+                    </div>
                 </div>
             </div>
+            
             
             <NutritionRows
                 nutritionItems={selectedDatesNutrients}
@@ -186,7 +189,11 @@ export default function NutritionCard() {
                         </span>
                     </div>
                     <div className='nc-footer-row-right'>
-                        (progress bar)
+                        <Progress 
+                            percent={30} 
+                            size="small" 
+                            className='footer-progress-bar'
+                        />
                     </div>
                 </div>
                 <div className='nc-footer-row'>
@@ -196,7 +203,11 @@ export default function NutritionCard() {
                         </span>
                     </div>
                     <div className='nc-footer-row-right'>
-                        (progress bar)
+                        <Progress 
+                            percent={30} 
+                            size="small" 
+                            className='footer-progress-bar'
+                        />
                     </div>
                 </div>
                 <div className='nc-footer-row'>
@@ -206,7 +217,11 @@ export default function NutritionCard() {
                         </span>
                     </div>
                     <div className='nc-footer-row-right'>
-                        (progress bar)
+                        <Progress 
+                            percent={30} 
+                            size="small" 
+                            className='footer-progress-bar'
+                        />
                     </div>
                 </div>
                 <div className='nc-footer-row'>
@@ -216,7 +231,11 @@ export default function NutritionCard() {
                         </span>
                     </div>
                     <div className='nc-footer-row-right'>
-                        (progress bar)
+                        <Progress 
+                            percent={30} 
+                            size="small" 
+                            className='footer-progress-bar'
+                        />
                     </div>
                 </div>
             </div>
