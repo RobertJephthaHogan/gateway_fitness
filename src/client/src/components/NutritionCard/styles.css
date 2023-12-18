@@ -58,13 +58,17 @@
 }
 
 .mtb-left {
-    width: 100%;
+    width: 45%;
+}
+
+.mtb-center {
+    width: 45%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .mtb-right {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    width: 10%;
 }
 
 .macro-title {
@@ -108,7 +112,7 @@
 }
 
 .nutrition-row-title-box {
-    width: 50%;
+    width: 45%;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 20px;
@@ -127,9 +131,16 @@
 }
 
 .nutrition-row-macro-box {
-    width: 50%;
+    width: 45%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+}
+
+.nutrition-row-select-box {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nutrition-rows-container {
@@ -152,4 +163,8 @@
 .footer-progress-bar {
     margin: 0;
     padding: 0
+}
+
+.down-outlined-icon {
+    font-size: 10px;
 }

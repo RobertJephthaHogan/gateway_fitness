@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './styles.css'
-import { PlusSquareOutlined } from '@ant-design/icons'
-import { Modal, Progress } from 'antd'
+import DownOutlined from '@ant-design/icons/DownOutlined'
+import PlusSquareOutlined from '@ant-design/icons/PlusSquareOutlined'
+import CheckOutlined from '@ant-design/icons/CheckOutlined'
+import EditOutlined from '@ant-design/icons/EditOutlined'
+import DeleteOutlined from '@ant-design/icons/DeleteOutlined'
+import { Button, Dropdown, MenuProps, Modal, Progress } from 'antd'
 import NutritionForm from '../forms/NutritionForm'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
@@ -134,7 +138,6 @@ export default function NutritionCard() {
         const aggregatedNutrition = [...selectedMeals, ...selectedSnacks]
         const sortedNutrients = sortByTime(aggregatedNutrition)
         setSelectedDatesNurtients(sortedNutrients)
-
     }
 
 
@@ -157,7 +160,25 @@ export default function NutritionCard() {
               }
               return result;
             }, {});
-          }
+        }
+
+        const items: MenuProps['items'] = [
+            {
+              label: <span>Mark Consumed</span>,
+              key: '0',
+              icon: <CheckOutlined />,
+            },
+            {
+              label: <span>Edit item</span>,
+              key: '1',
+              icon: <EditOutlined />,
+            },
+            {
+              label:  <span>Delete item</span>,
+              key: '3',
+              icon: <DeleteOutlined />,
+            },
+        ];
 
         const rows = props.nutritionItems?.map((item: any, i: any) => {
 
@@ -200,6 +221,19 @@ export default function NutritionCard() {
                             </span>
                         </div>
                     </div>
+                    <div className='nutrition-row-select-box'>
+                        <Dropdown 
+                            menu={{ items }} trigger={['click']}
+                        >
+                            <a onClick={(e) => e.preventDefault()}>
+                                <Button size='small'>
+                                    <DownOutlined 
+                                        className='down-outlined-icon'
+                                    />
+                                </Button>
+                            </a>
+                        </Dropdown>
+                    </div>
                 </div>
             )
         })
@@ -231,7 +265,7 @@ export default function NutritionCard() {
                     <div className='mtb-left'>
 
                     </div>
-                    <div className='mtb-right'>
+                    <div className='mtb-center'>
                         <span className='macro-title'>
                             Protein
                         </span>
@@ -244,6 +278,9 @@ export default function NutritionCard() {
                         <span className='macro-title'>
                             Calories
                         </span>
+                    </div>
+                    <div className='mtb-right'>
+
                     </div>
                 </div>
             </div>
