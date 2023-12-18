@@ -155,6 +155,16 @@ export default function NutritionCard() {
         }
     }
 
+    function deleteNutritionEntry(nutritionData: any) {
+        if (nutritionData.targetType == 'meal') {
+            store.dispatch(mealActions.delete(nutritionData.targetId))
+        }
+
+        if (nutritionData.targetType == 'snack') {
+            store.dispatch(snackActions.delete(nutritionData.targetId))
+        }
+    }
+
 
     interface NutritionRowProps {
         nutritionItems?: any
@@ -194,7 +204,6 @@ export default function NutritionCard() {
             }
 
             if (actionData.actionType === 'unconsumed') {
-                // TODO: Mark the item as unConsumed (isConsumed: false)
                 modifyIsConsumed(actionData, false)
             }
             
@@ -202,8 +211,9 @@ export default function NutritionCard() {
                 // TODO: Handle item editing
             }
             
-            if (actionData.actionType === 'edit') {
+            if (actionData.actionType === 'delete') {
                 // TODO: Delete the item
+                deleteNutritionEntry(actionData)
             }
 
         };
