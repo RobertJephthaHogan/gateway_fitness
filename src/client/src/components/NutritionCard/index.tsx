@@ -398,8 +398,8 @@ export default function NutritionCard() {
                         <Progress 
                             percent={
                                 parseFloat(((
-                                    nutrientStatus.consumedNutrients?.protein
-                                    / nutrientStatus.totalNutrients?.protein
+                                    nutrientStatus?.consumedNutrients?.protein
+                                    / nutrientStatus?.totalNutrients?.protein
                                 ) * 100 ).toFixed(1))
                             } 
                             size="small" 
@@ -416,8 +416,8 @@ export default function NutritionCard() {
                     <div className='nc-footer-row-right'>
                         <Progress 
                             percent={parseFloat(((
-                                nutrientStatus.consumedNutrients?.carbs
-                                / nutrientStatus.totalNutrients?.carbs
+                                nutrientStatus?.consumedNutrients?.carbs
+                                / nutrientStatus?.totalNutrients?.carbs
                             ) * 100 ).toFixed(1))} 
                             size="small" 
                             className='footer-progress-bar'
@@ -433,8 +433,8 @@ export default function NutritionCard() {
                     <div className='nc-footer-row-right'>
                         <Progress 
                             percent={parseFloat(((
-                                nutrientStatus.consumedNutrients?.fat
-                                / nutrientStatus.totalNutrients?.fat
+                                nutrientStatus?.consumedNutrients?.fat
+                                / nutrientStatus?.totalNutrients?.fat
                             ) * 100 ).toFixed(1))} 
                             size="small" 
                             className='footer-progress-bar'
@@ -450,8 +450,8 @@ export default function NutritionCard() {
                     <div className='nc-footer-row-right'>
                         <Progress 
                             percent={parseFloat(((
-                                nutrientStatus.consumedNutrients?.calories
-                                / nutrientStatus.totalNutrients?.calories
+                                nutrientStatus?.consumedNutrients?.calories
+                                / nutrientStatus?.totalNutrients?.calories
                             ) * 100 ).toFixed(1))} 
                             size="small" 
                             className='footer-progress-bar'
