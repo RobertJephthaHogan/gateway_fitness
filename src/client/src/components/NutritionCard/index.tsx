@@ -141,6 +141,20 @@ export default function NutritionCard() {
         setSelectedDatesNurtients(sortedNutrients)
     }
 
+    function markNutritionConsumed(nutritionData: any) {
+        if (nutritionData.targetType == 'meal') {
+            const mealToEdit = userMeals.find((m: any) => m.id === nutritionData.targetId)
+            mealToEdit.hasBeenConsumed = true
+            store.dispatch(mealActions.update(nutritionData.targetId, mealToEdit))
+        }
+
+        if (nutritionData.targetType == 'snack') {
+            const snackToEdit = userSnacks.find((s: any) => s.id === nutritionData.targetId)
+            snackToEdit.hasBeenConsumed = true
+            store.dispatch(snackActions.update(nutritionData.targetId, snackToEdit))
+        }
+    }
+
 
     interface NutritionRowProps {
         nutritionItems?: any
@@ -171,12 +185,12 @@ export default function NutritionCard() {
             
             const actionData = {
                 actionType: actionInfo[0],
-                targetType: actionInfo[0],
-                targetId: actionInfo[0]
+                targetType: actionInfo[1],
+                targetId: actionInfo[2]
             }
 
             if (actionData.actionType === 'consumed') {
-                // TODO: Mark the item as consumed (isConsumed: true)
+                markNutritionConsumed(actionData)
             }
 
             if (actionData.actionType === 'unconsumed') {
