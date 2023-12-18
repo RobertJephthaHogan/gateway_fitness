@@ -6,7 +6,7 @@ import CheckOutlined from '@ant-design/icons/CheckOutlined'
 import EditOutlined from '@ant-design/icons/EditOutlined'
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined'
 import UndoOutlined from '@ant-design/icons/UndoOutlined'
-import { Button, Dropdown, MenuProps, Modal, Progress, message } from 'antd'
+import { Button, Dropdown, MenuProps, Modal, Progress, Tag, message } from 'antd'
 import NutritionForm from '../forms/NutritionForm'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
@@ -247,6 +247,28 @@ export default function NutritionCard() {
                     className='nutrition-row'
                     key={`nutrition-row-${i}`}
                 >
+                    <div className='nutrition-row-indicator-box'>
+                    {
+                        item?.hasBeenConsumed
+                        ? (
+                            <Tag 
+                                color="green" 
+                                className='complete-tag'
+                            /> 
+                        )
+                        : null
+                    }
+                    {
+                        !item?.hasBeenConsumed
+                        ? (
+                            <Tag 
+                                className='incomplete-tag'
+                                color="default" 
+                            />
+                        )
+                        : null
+                    }
+                    </div>
                     <div className='nutrition-row-title-box'>
                         <div>
                             <span className='nutrition-row-title'>
@@ -321,6 +343,11 @@ export default function NutritionCard() {
                     </div>
                 </div>
                 <div className='macro-title-bar'>
+                    <div className='mtb-far-left'>
+                        {/* <span className='macro-title'>
+                            Status
+                        </span> */}
+                    </div>
                     <div className='mtb-left'>
 
                     </div>
