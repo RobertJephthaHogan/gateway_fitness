@@ -141,16 +141,16 @@ export default function NutritionCard() {
         setSelectedDatesNurtients(sortedNutrients)
     }
 
-    function markNutritionConsumed(nutritionData: any) {
+    function modifyIsConsumed(nutritionData: any, consumed: boolean) {
         if (nutritionData.targetType == 'meal') {
             const mealToEdit = userMeals.find((m: any) => m.id === nutritionData.targetId)
-            mealToEdit.hasBeenConsumed = true
+            mealToEdit.hasBeenConsumed = consumed
             store.dispatch(mealActions.update(nutritionData.targetId, mealToEdit))
         }
 
         if (nutritionData.targetType == 'snack') {
             const snackToEdit = userSnacks.find((s: any) => s.id === nutritionData.targetId)
-            snackToEdit.hasBeenConsumed = true
+            snackToEdit.hasBeenConsumed = consumed
             store.dispatch(snackActions.update(nutritionData.targetId, snackToEdit))
         }
     }
@@ -178,7 +178,7 @@ export default function NutritionCard() {
         }
 
         const handleMenuClick: MenuProps['onClick'] = (e) => {
-            message.info('Click on menu item.');
+            //message.info('Click on menu item.');
             console.log('click', e);
 
             const actionInfo = e.key.split('-')
@@ -190,11 +190,12 @@ export default function NutritionCard() {
             }
 
             if (actionData.actionType === 'consumed') {
-                markNutritionConsumed(actionData)
+                modifyIsConsumed(actionData, true)
             }
 
             if (actionData.actionType === 'unconsumed') {
                 // TODO: Mark the item as unConsumed (isConsumed: false)
+                modifyIsConsumed(actionData, false)
             }
             
             if (actionData.actionType === 'edit') {
@@ -211,19 +212,20 @@ export default function NutritionCard() {
         const rows = props.nutritionItems?.map((item: any, i: any) => {
 
             const aggregatedNutrientValues = aggregateValues(item?.ingredients)
+            console.log('item, item', item)
 
             const items: MenuProps['items'] = [
                 {
                   label: <span>Mark Consumed</span>,
                   key: `consumed-${item.type}-${item.id}`,
                   icon: <CheckOutlined />,
-                  disabled: item.isConsumed
+                  disabled: item.hasBeenConsumed
                 },
                 {
                     label: <span>Mark Un-Consumed</span>,
                     key: `unconsumed-${item.type}-${item.id}`,
                     icon: <UndoOutlined />,
-                    disabled: !item.isConsumed
+                    disabled: !item.hasBeenConsumed
                   },
                 {
                   label: <span>Edit item</span>,
