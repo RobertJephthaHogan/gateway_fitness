@@ -22,6 +22,7 @@ export default function NutritionCard() {
     const [selectedDatesNutrients, setSelectedDatesNurtients] = useState<any>([])
     const [entryModalOpen, setEntryModalOpen] = useState<boolean>(false)
     const [nutrientStatus, setNutrientStatus] = useState<any>()
+
     
     useEffect(() => {
         setComponentData()
@@ -212,7 +213,6 @@ export default function NutritionCard() {
             }
             
             if (actionData.actionType === 'delete') {
-                // TODO: Delete the item
                 deleteNutritionEntry(actionData)
             }
 
@@ -222,7 +222,6 @@ export default function NutritionCard() {
         const rows = props.nutritionItems?.map((item: any, i: any) => {
 
             const aggregatedNutrientValues = aggregateValues(item?.ingredients)
-            console.log('item, item', item)
 
             const items: MenuProps['items'] = [
                 {
@@ -397,7 +396,12 @@ export default function NutritionCard() {
                     </div>
                     <div className='nc-footer-row-right'>
                         <Progress 
-                            percent={30} 
+                            percent={
+                                parseFloat(((
+                                    nutrientStatus.consumedNutrients?.protein
+                                    / nutrientStatus.totalNutrients?.protein
+                                ) * 100 ).toFixed(1))
+                            } 
                             size="small" 
                             className='footer-progress-bar'
                         />
@@ -411,7 +415,10 @@ export default function NutritionCard() {
                     </div>
                     <div className='nc-footer-row-right'>
                         <Progress 
-                            percent={30} 
+                            percent={parseFloat(((
+                                nutrientStatus.consumedNutrients?.carbs
+                                / nutrientStatus.totalNutrients?.carbs
+                            ) * 100 ).toFixed(1))} 
                             size="small" 
                             className='footer-progress-bar'
                         />
@@ -425,7 +432,10 @@ export default function NutritionCard() {
                     </div>
                     <div className='nc-footer-row-right'>
                         <Progress 
-                            percent={30} 
+                            percent={parseFloat(((
+                                nutrientStatus.consumedNutrients?.fat
+                                / nutrientStatus.totalNutrients?.fat
+                            ) * 100 ).toFixed(1))} 
                             size="small" 
                             className='footer-progress-bar'
                         />
@@ -439,7 +449,10 @@ export default function NutritionCard() {
                     </div>
                     <div className='nc-footer-row-right'>
                         <Progress 
-                            percent={30} 
+                            percent={parseFloat(((
+                                nutrientStatus.consumedNutrients?.calories
+                                / nutrientStatus.totalNutrients?.calories
+                            ) * 100 ).toFixed(1))} 
                             size="small" 
                             className='footer-progress-bar'
                         />
