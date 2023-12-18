@@ -5,7 +5,8 @@ import PlusSquareOutlined from '@ant-design/icons/PlusSquareOutlined'
 import CheckOutlined from '@ant-design/icons/CheckOutlined'
 import EditOutlined from '@ant-design/icons/EditOutlined'
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined'
-import { Button, Dropdown, MenuProps, Modal, Progress } from 'antd'
+import UndoOutlined from '@ant-design/icons/UndoOutlined'
+import { Button, Dropdown, MenuProps, Modal, Progress, message } from 'antd'
 import NutritionForm from '../forms/NutritionForm'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
@@ -162,27 +163,70 @@ export default function NutritionCard() {
             }, {});
         }
 
-        const items: MenuProps['items'] = [
-            {
-              label: <span>Mark Consumed</span>,
-              key: '0',
-              icon: <CheckOutlined />,
-            },
-            {
-              label: <span>Edit item</span>,
-              key: '1',
-              icon: <EditOutlined />,
-            },
-            {
-              label:  <span>Delete item</span>,
-              key: '3',
-              icon: <DeleteOutlined />,
-            },
-        ];
+        const handleMenuClick: MenuProps['onClick'] = (e) => {
+            message.info('Click on menu item.');
+            console.log('click', e);
+
+            const actionInfo = e.key.split('-')
+            
+            const actionData = {
+                actionType: actionInfo[0],
+                targetType: actionInfo[0],
+                targetId: actionInfo[0]
+            }
+
+            if (actionData.actionType === 'consumed') {
+                // TODO: Mark the item as consumed (isConsumed: true)
+            }
+
+            if (actionData.actionType === 'unconsumed') {
+                // TODO: Mark the item as unConsumed (isConsumed: false)
+            }
+            
+            if (actionData.actionType === 'edit') {
+                // TODO: Handle item editing
+            }
+            
+            if (actionData.actionType === 'edit') {
+                // TODO: Delete the item
+            }
+
+        };
+
 
         const rows = props.nutritionItems?.map((item: any, i: any) => {
 
             const aggregatedNutrientValues = aggregateValues(item?.ingredients)
+
+            const items: MenuProps['items'] = [
+                {
+                  label: <span>Mark Consumed</span>,
+                  key: `consumed-${item.type}-${item.id}`,
+                  icon: <CheckOutlined />,
+                  disabled: item.isConsumed
+                },
+                {
+                    label: <span>Mark Un-Consumed</span>,
+                    key: `unconsumed-${item.type}-${item.id}`,
+                    icon: <UndoOutlined />,
+                    disabled: !item.isConsumed
+                  },
+                {
+                  label: <span>Edit item</span>,
+                  key: `edit-${item.type}-${item.id}`,
+                  icon: <EditOutlined />,
+                },
+                {
+                  label:  <span>Delete item</span>,
+                  key: `delete-${item.type}-${item.id}`,
+                  icon: <DeleteOutlined />,
+                },
+            ];
+
+            const menuProps = {
+                items,
+                onClick: handleMenuClick,
+            };
             
             return (
                 <div 
@@ -223,7 +267,8 @@ export default function NutritionCard() {
                     </div>
                     <div className='nutrition-row-select-box'>
                         <Dropdown 
-                            menu={{ items }} trigger={['click']}
+                            menu={menuProps} 
+                            trigger={['click']}
                         >
                             <a onClick={(e) => e.preventDefault()}>
                                 <Button size='small'>
