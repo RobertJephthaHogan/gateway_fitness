@@ -6,6 +6,8 @@
     height: 100%;
     max-height: 100%;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .nutrition-card-topbar {
@@ -29,7 +31,7 @@
 }
 
 .nc-tb-title {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 700;
 }
 
@@ -55,27 +57,36 @@
     align-items: center;
 }
 
+.mtb-far-left {
+    width: 10%;
+}
+
 .mtb-left {
-    width: 100%;
+    width: 40%;
+}
+
+.mtb-center {
+    width: 40%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .mtb-right {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    width: 10%;
 }
 
 .macro-title {
     font-size: 12px;
     font-weight: 500;
+    display: flex;
+    justify-content: center;
 }
 
 .nutrition-card-footer {
     width: 100%;
-    position: absolute;
-    bottom: 0;
     border-top: 1px solid #000000;
     padding: 10px;
+    box-sizing: border-box;
 }
 
 .nc-footer-row {
@@ -83,16 +94,20 @@
 }
 
 .nc-footer-row-left {
-    width: 100%;
+    width: 30%;
+    white-space: nowrap;    
+    overflow: hidden; 
+    text-overflow: ellipsis;
 }
 
 .nc-footer-row-right {
-    width: 100%;
+    width: 70%;
 }
 
 .footer-status-title {
     font-size: 12px;
     font-weight: 500;
+
 }
 
 .nutrition-row {
@@ -100,11 +115,32 @@
     border-bottom: 1px solid #CDCDCD;
 }
 
+.nutrition-row-indicator-box {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+}
+
+.complete-tag {
+    border-radius: 10px;
+    height: 20px;
+    width: 20px;
+}
+
+.incomplete-tag {
+    border-radius: 10px;
+    height: 20px;
+    width: 20px;
+}
+
 .nutrition-row-title-box {
-    width: 50%;
+    width: 40%;
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-left: 20px;
+    box-sizing: border-box;
+
 }
 
 .nutrition-row-title {
@@ -118,15 +154,21 @@
 }
 
 .nutrition-row-macro-box {
-    width: 50%;
+    width: 40%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
 
+.nutrition-row-select-box {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .nutrition-rows-container {
-    height: 100px;
-    max-height: 100px;
-    overflow: scroll;
+    overflow: auto;
+    flex-grow: 1;
 }
 
 .nutrition-row-macro-item {
@@ -139,4 +181,13 @@
 .macro-item-text {
     font-size: 16px;
     font-weight: 700;
+}
+
+.footer-progress-bar {
+    margin: 0;
+    padding: 0
+}
+
+.down-outlined-icon {
+    font-size: 10px;
 }

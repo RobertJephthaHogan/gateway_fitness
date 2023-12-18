@@ -12,12 +12,7 @@ export default function Dashboard() {
                     <Calendar/>
                 </div>
                 <div className='card-container'>
-                    <div className='card-container-top'>
-                        <NutritionCard/>
-                    </div>
-                    <div className='card-container-bottom'>
-                        Card Container Bottom
-                    </div>
+                    <NutritionCard/>
                 </div>
             </div>
         </div>
