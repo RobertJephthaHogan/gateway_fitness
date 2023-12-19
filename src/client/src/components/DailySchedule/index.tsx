@@ -22,6 +22,7 @@ type Props = {
   deactivateTimeBetween?: any
   isCollapsible?:any
   showHeader?: any
+  idPartial?: any
 };
 
 const DailySchedule: React.FC<Props> = ({
@@ -30,7 +31,8 @@ const DailySchedule: React.FC<Props> = ({
     eventsOnSelectedDay,
     hasDeactiveTime,
     isCollapsible,
-    showHeader
+    showHeader,
+    idPartial
 
 }) => {
   
@@ -58,9 +60,10 @@ const DailySchedule: React.FC<Props> = ({
         message.info('Event Deleted');
     };
 
-    let onTheHourTimes : any= [];
+    let onTheHourTimes : any[] = [];
 
-    //Generates an Array of of times formatted for clean rendering ex. "12:00AM", returns all times of day, also populates onTheHourTimes Array defined outside function
+    //Generates an Array of of times formatted for clean rendering ex. "12:00AM", 
+    //returns all times of day, also populates onTheHourTimes Array 
     const timesGenerator = () => {
         let minutesInterval = 1;
         let times = []; 
@@ -182,9 +185,8 @@ const DailySchedule: React.FC<Props> = ({
             } 
         }
 
-
-        // return cell type and cell contents conditionally based on logic above for rendering in Schedule Renderer.
-        if (isTimeBlockContainingEventStart) { // return cell with rendered event tile for a valid time block containing event startTime
+        // return cell with rendered event tile for a valid time block containing event startTime
+        if (isTimeBlockContainingEventStart) { 
             return (
                 <div className='w-100 flex event-tile-wrapper'>
                     <div className='w-100' style={{height:"60px"}}>
@@ -282,7 +284,7 @@ const DailySchedule: React.FC<Props> = ({
         }, [])
 
     function ScrollToEightAM() {
-        const elementToTarget: any = document.getElementById('schedule-content')
+        const elementToTarget: any = document.getElementById(`schedule-content-${idPartial}`)
         // eslint-disable-next-line no-restricted-globals
         elementToTarget?.addEventListener("overflow", scroll())
         const v_shift = elementToTarget.scrollHeight / 3 
@@ -332,7 +334,11 @@ const DailySchedule: React.FC<Props> = ({
                     : null
                 }
                 <div className=' w-100' >
-                    <Col span={24} className='schedule-content' id='schedule-content'>
+                    <Col 
+                        span={24} 
+                        className={`schedule-content`} 
+                        id={`schedule-content-${idPartial}`}
+                    >
                         <ScheduleRenderer />
                     </Col>
                 </div>

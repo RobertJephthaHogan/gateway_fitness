@@ -114,7 +114,7 @@ export default function Calendar() {
             </div>
             <div className='calendar-body'>
                 {
-                    weekViewDates?.map((d: any) => {
+                    weekViewDates?.map((d: any, i: number) => {
 
                         return (
                             <div 
@@ -123,6 +123,7 @@ export default function Calendar() {
                             >
                                 <DailySchedule
                                     selectedCalendarDate={d}
+                                    idPartial={i}
                                 />
                             </div>
                         )
