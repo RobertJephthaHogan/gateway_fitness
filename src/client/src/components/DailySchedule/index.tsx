@@ -231,7 +231,9 @@ const DailySchedule: React.FC<Props> = ({
             return (
                 <div className=' w-100 event-tile-wrapper' style={{height: "60px"}}>
                     <div className='w-100 ' style={{height: "60px"}}>
-                        {time}
+                        <span className='event-time-txt'>
+                            {time}
+                        </span>
                     </div>
                 </div>
             )
