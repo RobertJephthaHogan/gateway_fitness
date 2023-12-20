@@ -5,14 +5,43 @@ import LeftOutlined from '@ant-design/icons/LeftOutlined'
 import RightOutlined from '@ant-design/icons/RightOutlined'
 import dayjs from 'dayjs'
 import DailySchedule from '../DailySchedule'
+import { useSelector } from 'react-redux'
+import { store } from '../../redux/store'
+import mealActions from '../../redux/actions/meal'
+import snackActions from '../../redux/actions/snack'
 
 
 
 export default function Calendar() {
 
+    const currentUser = useSelector((state: any) => state.user?.data ?? [])
+    const userMeals = useSelector((state: any) => state.meals?.queryResult ?? [])
+    const userSnacks = useSelector((state: any) => state.snacks?.queryResult ?? [])
     const [selectedDate, setSelectedDate] = useState<any>(dayjs())
     const [weekViewDates, setWeekViewDates] = useState<any>([])
 
+
+    useEffect(() => {
+        setComponentData()
+    }, [])
+    
+    function setComponentData() {
+        store.dispatch(mealActions.setMeals(currentUser?._id))
+        store.dispatch(snackActions.setSnacks(currentUser?._id))
+    }
+
+    
+    useEffect(() => {
+
+        let calendarEvents : any[] = []
+
+        //ToDo: iterate through meal items and add end date for event rendering purposes (15 min after start date)
+            // Add modified meals to calendar events
+        //ToDo: iterate through snack items and add end date for event rendering purposes (15 min after start date)
+            // Add modified meals to calendar events
+        //ToDo: iterate through workout items items and add to calendar events 
+
+    }, [userMeals, userSnacks, currentUser])
 
     useEffect(() => {
 
@@ -114,7 +143,9 @@ export default function Calendar() {
             </div>
             <div className='calendar-body'>
                 {
-                    weekViewDates?.map((d: any) => {
+                    weekViewDates?.map((d: any, i: number) => {
+
+
 
                         return (
                             <div 
@@ -123,6 +154,8 @@ export default function Calendar() {
                             >
                                 <DailySchedule
                                     selectedCalendarDate={d}
+                                    idPartial={i}
+                                    eventsOnSelectedDay={[]}
                                 />
                             </div>
                         )

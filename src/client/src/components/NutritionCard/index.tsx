@@ -22,20 +22,21 @@ export default function NutritionCard() {
     const [selectedDatesNutrients, setSelectedDatesNurtients] = useState<any>([])
     const [entryModalOpen, setEntryModalOpen] = useState<boolean>(false)
     const [nutrientStatus, setNutrientStatus] = useState<any>()
+    const [calendarEventItems, setCalendarEventItems] = useState<any>([])
 
     
     useEffect(() => {
         setComponentData()
-    }, [currentUser])
-
-    useEffect(() => {
-        const selectedMeals = filterForSelectedDaysNutrition()
-    }, [selectedDate, userMeals, userSnacks])
+    }, [])
 
     function setComponentData() {
         store.dispatch(mealActions.setMeals(currentUser?._id))
         store.dispatch(snackActions.setSnacks(currentUser?._id))
     }
+
+    useEffect(() => {
+        const selectedMeals = filterForSelectedDaysNutrition()
+    }, [selectedDate, userMeals, userSnacks])
 
     useEffect(() => {
         const oNutrients = organizeNutritionData()
