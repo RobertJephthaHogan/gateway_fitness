@@ -30,6 +30,19 @@ export default function Calendar() {
         store.dispatch(snackActions.setSnacks(currentUser?._id))
     }
 
+    
+    useEffect(() => {
+
+        let calendarEvents : any[] = []
+
+        //ToDo: iterate through meal items and add end date for event rendering purposes (15 min after start date)
+            // Add modified meals to calendar events
+        //ToDo: iterate through snack items and add end date for event rendering purposes (15 min after start date)
+            // Add modified meals to calendar events
+        //ToDo: iterate through workout items items and add to calendar events 
+
+    }, [userMeals, userSnacks, currentUser])
+
     useEffect(() => {
 
         const weekDates = generateWeekDates()
