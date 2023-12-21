@@ -117,7 +117,7 @@ const DailySchedule: React.FC<Props> = ({
                         startDateTime: entry.startTime,
                         endDateTime: entry.endTime,
                         isValidDailyTimeRange:  (Date.parse(entry.startTime) < Date.parse(entry.endTime)) && (entry.startTime.split("T")[0] === entry.endTime.split("T")[0]),
-                        eventLengthInMinutes : timeDifferenceInMinutes(entry.startDateTime, entry.endTime),
+                        eventLengthInMinutes : timeDifferenceInMinutes(entry.startTime, entry.endTime),
                         event: entry
                     }
             )) || []
@@ -170,16 +170,36 @@ const DailySchedule: React.FC<Props> = ({
                     eventDuration = validEntries[entry].eventLengthInMinutes;
                     let eventEnd = validEntries[entry].endDateTime;
                     let dateString = eventStart.split("T")[0];
-                    let startTimeString = eventStart.split("T")[1].slice( 0, -3);
-                    let endTimeString = eventEnd.split("T")[1].slice( 0, -3);
+                    let startTimeString = eventStart.split("T")[1].slice( 0, 6);
+                    let endTimeString = eventEnd.split("T")[1].slice( 0, 6);
                     let convertedTime = timeConverter(time, dateString);
                     eventStartTimeOffsetFromTopOfHour = timeDifferenceInMinutes(eventStart, convertedTime)
 
+                    const startTimeHour = parseInt(startTimeString.split(":")[0], 10)
+                    const timeBlockHour = (parseInt(time.split(":")[0], 10) +12)
+                    
+                    //TODO: ADJUST UTC BACK TO LOCAL DATETIME FOR RENDERING
+
+                    const startTimeMatchTimeBlock : boolean = startTimeHour === timeBlockHour
+                    console.log('startTimeMatchTimeBlock', startTimeMatchTimeBlock)
+
+                    if (startTimeMatchTimeBlock) {
+                        console.log('eventStartTimeOffsetFromTopOfHour', eventStartTimeOffsetFromTopOfHour)
+                        console.log('startTimeHour', startTimeHour)
+                    }
+
                     if (
-                        (timeDifferenceInMinutes(eventStart, convertedTime) < 60) && 
-                        ((startTimeString[1] === time[1]) || (parseInt(startTimeString.split(":")[0], 0) === (parseInt(time.split(":")[0], 10) +12)))
+                        (timeDifferenceInMinutes(eventStart, convertedTime) < 60) 
+                        && 
+                        (
+                            // (startTimeString[1] === time[1]) || 
+                            (
+                                startTimeMatchTimeBlock
+                            )
+                        )
                         ) {
                         isTimeBlockContainingEventStart = true //triggers cell event render in if else following this
+                        console.log('isTimeBlockContainingEventStart', true)
                         thisBlocksEvent = validEntries[entry] //define a variable for renderers to reference this events info
                         validEntries = validEntries.pop(validEntries[entry]) // only last event cell renders without this
                     } 
