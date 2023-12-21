@@ -155,12 +155,14 @@ export default function Calendar() {
 
                         let formattedMeals = mealsMatchingDay.map((m: any) => {
                             let date = new Date(m.time);
+                            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 
                             // Add 15 minutes
                             date.setMinutes(date.getMinutes() + 15);
 
                             // If you need the result as a string
-                            let startTimePlusFifteen = date.toISOString();
+                            let startTimePlusFifteen = date.toISOString(); // TODO: FIX WRONG TIMEZONE
 
                             return {
                                 ...m, 

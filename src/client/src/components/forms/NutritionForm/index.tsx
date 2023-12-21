@@ -240,7 +240,7 @@ export default function NutritionForm(props: NutritionFormProps) {
                         showTime
                         onChange={
                             (v) => handleInputChange(
-                                'time', v?.format('YYYY-MM-DD HH:mm:ss')
+                                'time', v?.toISOString()
                             )
                         } 
                         className='nutrition-form-datepicker'
