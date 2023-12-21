@@ -135,46 +135,49 @@ export default function Calendar() {
                 {
                     weekDates?.map((d: any, i: number) => {
 
-
-                        let calendarEvents : any[] = []
-                        console.log('d', d)
-                        console.log('userMeals', userMeals)
-                        console.log('userSnacks', userSnacks)
-
                         // Find all meals whose time on this iterations the date
                         const mealsMatchingDay = userMeals.filter((meal: any) => meal.time?.split('T')[0] == d )
-                        console.log('mealsMatchingDay', mealsMatchingDay)
 
                         // Find all snacks whose time on this iterations the date
                         const snacksMatchingDay = userSnacks.filter((snack: any) => snack.time?.split('T')[0] == d )
-                        console.log('snacksMatchingDay', snacksMatchingDay)
 
 
-                        //ToDo: iterate through meal items and add end date for event rendering purposes (15 min after start date)
-                            // add new attribute to all objects - startTime from time
-
-                        let formattedMeals = mealsMatchingDay.map((m: any) => {
-                            let date = new Date(m.time);
-                            const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-
-                            // Add 15 minutes
-                            date.setMinutes(date.getMinutes() + 15);
-
-                            // If you need the result as a string
-                            let startTimePlusFifteen = date.toISOString(); // TODO: FIX WRONG TIMEZONE
+                        // iterate through meal items and add end date for event rendering purposes (15 min after start date)
+                        const formattedMeals = mealsMatchingDay.map((m: any) => {
+                            
+                            let date = new Date(m.time + 'Z');
+                            const letDateAsTS = date.getTime();
+                            const dateAsTsPlusFifteenMin = letDateAsTS + 15 * 60 * 1000
+                            const plusFifteen = new Date(dateAsTsPlusFifteenMin).toISOString()
 
                             return {
                                 ...m, 
                                 startTime: m.time,
-                                endTime: startTimePlusFifteen
+                                endTime: plusFifteen
                             };
                         });
                         console.log('formattedMeals', formattedMeals)
 
-                        //ToDo: iterate through snack items and add end date for event rendering purposes (15 min after start date)
+                        // iterate through snack items and add end date for event rendering purposes (15 min after start date)
+                        const formattedSnacks = snacksMatchingDay.map((m: any) => {
+                            
+                            let date = new Date(m.time + 'Z');
+                            const letDateAsTS = date.getTime();
+                            const dateAsTsPlusFifteenMin = letDateAsTS + 15 * 60 * 1000
+                            const plusFifteen = new Date(dateAsTsPlusFifteenMin).toISOString()
+
+                            return {
+                                ...m, 
+                                startTime: m.time,
+                                endTime: plusFifteen
+                            };
+                        });
+                        console.log('formattedSnacks', formattedSnacks)
+
                         //ToDo: iterate through workout items items and add to calendar events 
 
+
+                        let calendarEvents : any[] = [...formattedMeals, formattedSnacks]
 
                         return (
                             <div 
