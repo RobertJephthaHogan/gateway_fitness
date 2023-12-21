@@ -19,6 +19,7 @@ export default function Calendar() {
     const userSnacks = useSelector((state: any) => state.snacks?.queryResult ?? [])
     const [selectedDate, setSelectedDate] = useState<any>(dayjs())
     const [weekViewDates, setWeekViewDates] = useState<any>([])
+    const [weekDates, setWeekDates] = useState<any>()
 
 
     useEffect(() => {
@@ -30,18 +31,6 @@ export default function Calendar() {
         store.dispatch(snackActions.setSnacks(currentUser?._id))
     }
 
-    
-    useEffect(() => {
-
-        let calendarEvents : any[] = []
-
-        //ToDo: iterate through meal items and add end date for event rendering purposes (15 min after start date)
-            // Add modified meals to calendar events
-        //ToDo: iterate through snack items and add end date for event rendering purposes (15 min after start date)
-            // Add modified meals to calendar events
-        //ToDo: iterate through workout items items and add to calendar events 
-
-    }, [userMeals, userSnacks, currentUser])
 
     useEffect(() => {
 
@@ -97,6 +86,7 @@ export default function Calendar() {
             ...followingDates
         ]
 
+        setWeekDates(thisWeeksDays)
         thisWeeksDays = formatDateArray(thisWeeksDays)
 
         return thisWeeksDays
@@ -143,8 +133,45 @@ export default function Calendar() {
             </div>
             <div className='calendar-body'>
                 {
-                    weekViewDates?.map((d: any, i: number) => {
+                    weekDates?.map((d: any, i: number) => {
 
+
+                        let calendarEvents : any[] = []
+                        console.log('d', d)
+                        console.log('userMeals', userMeals)
+                        console.log('userSnacks', userSnacks)
+
+                        // Find all meals whose time on this iterations the date
+                        const mealsMatchingDay = userMeals.filter((meal: any) => meal.time?.split('T')[0] == d )
+                        console.log('mealsMatchingDay', mealsMatchingDay)
+
+                        // Find all snacks whose time on this iterations the date
+                        const snacksMatchingDay = userSnacks.filter((snack: any) => snack.time?.split('T')[0] == d )
+                        console.log('snacksMatchingDay', snacksMatchingDay)
+
+
+                        //ToDo: iterate through meal items and add end date for event rendering purposes (15 min after start date)
+                            // add new attribute to all objects - startTime from time
+
+                        let formattedMeals = mealsMatchingDay.map((m: any) => {
+                            let date = new Date(m.time);
+
+                            // Add 15 minutes
+                            date.setMinutes(date.getMinutes() + 15);
+
+                            // If you need the result as a string
+                            let startTimePlusFifteen = date.toISOString();
+
+                            return {
+                                ...m, 
+                                startTime: m.time,
+                                endTime: startTimePlusFifteen
+                            };
+                        });
+                        console.log('formattedMeals', formattedMeals)
+
+                        //ToDo: iterate through snack items and add end date for event rendering purposes (15 min after start date)
+                        //ToDo: iterate through workout items items and add to calendar events 
 
 
                         return (
