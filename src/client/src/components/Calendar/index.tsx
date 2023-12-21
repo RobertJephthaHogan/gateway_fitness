@@ -144,40 +144,44 @@ export default function Calendar() {
 
                         // iterate through meal items and add end date for event rendering purposes (15 min after start date)
                         const formattedMeals = mealsMatchingDay.map((m: any) => {
-                            
-                            let date = new Date(m.time + 'Z');
+
+                            // Time set from form is always utc, ensure it can be parsed as such (includes Z)
+                            const confirmedUTC = (m.time.charAt(m.time.length - 1) === 'Z') ? m.time : m.time + 'Z'
+
+                            let date = new Date(confirmedUTC);
                             const letDateAsTS = date.getTime();
                             const dateAsTsPlusFifteenMin = letDateAsTS + 15 * 60 * 1000
                             const plusFifteen = new Date(dateAsTsPlusFifteenMin).toISOString()
 
                             return {
                                 ...m, 
-                                startTime: m.time,
+                                startTime: confirmedUTC,
                                 endTime: plusFifteen
                             };
                         });
-                        console.log('formattedMeals', formattedMeals)
 
                         // iterate through snack items and add end date for event rendering purposes (15 min after start date)
                         const formattedSnacks = snacksMatchingDay.map((m: any) => {
                             
-                            let date = new Date(m.time + 'Z');
+                            // Time set from form is always utc, ensure it can be parsed as such (includes Z)
+                            const confirmedUTC = (m.time.charAt(m.time.length - 1) === 'Z') ? m.time : m.time + 'Z'
+
+                            let date = new Date(confirmedUTC);
                             const letDateAsTS = date.getTime();
                             const dateAsTsPlusFifteenMin = letDateAsTS + 15 * 60 * 1000
                             const plusFifteen = new Date(dateAsTsPlusFifteenMin).toISOString()
 
                             return {
                                 ...m, 
-                                startTime: m.time,
+                                startTime: confirmedUTC,
                                 endTime: plusFifteen
                             };
                         });
-                        console.log('formattedSnacks', formattedSnacks)
+
 
                         //ToDo: iterate through workout items items and add to calendar events 
 
-
-                        let calendarEvents : any[] = [...formattedMeals, formattedSnacks]
+                        let calendarEvents : any[] = [...formattedMeals, ...formattedSnacks]
 
                         return (
                             <div 
@@ -187,7 +191,7 @@ export default function Calendar() {
                                 <DailySchedule
                                     selectedCalendarDate={d}
                                     idPartial={i}
-                                    eventsOnSelectedDay={[]}
+                                    eventsOnSelectedDay={calendarEvents}
                                 />
                             </div>
                         )

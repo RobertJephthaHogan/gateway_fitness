@@ -38,6 +38,7 @@ const DailySchedule: React.FC<Props> = ({
   
     const [isModalVisible, setIsModalVisible] = useState(false);
     
+    console.log('eventsOnSelectedDay',eventsOnSelectedDay)
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -115,8 +116,8 @@ const DailySchedule: React.FC<Props> = ({
                     {
                         startDateTime: entry.startTime,
                         endDateTime: entry.endTime,
-                        isValidDailyTimeRange:  Date.parse(entry.startTime) < Date.parse(entry.endTime) && entry.startTime.split("T")[0] === entry.endTime.split("T")[0],
-                        eventLengthInMinutes : timeDifferenceInMinutes(entry.startDateTime, entry.endDateTime),
+                        isValidDailyTimeRange:  (Date.parse(entry.startTime) < Date.parse(entry.endTime)) && (entry.startTime.split("T")[0] === entry.endTime.split("T")[0]),
+                        eventLengthInMinutes : timeDifferenceInMinutes(entry.startDateTime, entry.endTime),
                         event: entry
                     }
             )) || []
@@ -161,6 +162,7 @@ const DailySchedule: React.FC<Props> = ({
                     continue
                 }
             }
+            console.log('validEntries', validEntries)
 
             for (let entry in validEntries) {
                 if (validEntries[entry]) {
