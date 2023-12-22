@@ -38,7 +38,6 @@ const DailySchedule: React.FC<Props> = ({
   
     const [isModalVisible, setIsModalVisible] = useState(false);
     
-    console.log('eventsOnSelectedDay',eventsOnSelectedDay)
 
     const showModal = () => {
         setIsModalVisible(true);
@@ -181,12 +180,12 @@ const DailySchedule: React.FC<Props> = ({
                     //TODO: ADJUST UTC BACK TO LOCAL DATETIME FOR RENDERING
 
                     const startTimeMatchTimeBlock : boolean = startTimeHour === timeBlockHour
-                    console.log('startTimeMatchTimeBlock', startTimeMatchTimeBlock)
+                    // console.log('startTimeMatchTimeBlock', startTimeMatchTimeBlock)
 
-                    if (startTimeMatchTimeBlock) {
-                        console.log('eventStartTimeOffsetFromTopOfHour', eventStartTimeOffsetFromTopOfHour)
-                        console.log('startTimeHour', startTimeHour)
-                    }
+                    // if (startTimeMatchTimeBlock) {
+                    //     console.log('eventStartTimeOffsetFromTopOfHour', eventStartTimeOffsetFromTopOfHour)
+                    //     console.log('startTimeHour', startTimeHour)
+                    // }
 
                     if (
                         (timeDifferenceInMinutes(eventStart, convertedTime) < 60) 

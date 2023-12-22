@@ -148,6 +148,8 @@ export default function Calendar() {
                             // Time set from form is always utc, ensure it can be parsed as such (includes Z)
                             const confirmedUTC = (m.time.charAt(m.time.length - 1) === 'Z') ? m.time : m.time + 'Z'
 
+                            // TODO: SET STANDARDIZED UTC BACK TO LOCAL NOW THAT WE ENSURED FORMAT
+
                             let date = new Date(confirmedUTC);
                             const letDateAsTS = date.getTime();
                             const dateAsTsPlusFifteenMin = letDateAsTS + 15 * 60 * 1000
@@ -165,6 +167,8 @@ export default function Calendar() {
                             
                             // Time set from form is always utc, ensure it can be parsed as such (includes Z)
                             const confirmedUTC = (m.time.charAt(m.time.length - 1) === 'Z') ? m.time : m.time + 'Z'
+
+                            // TODO: SET STANDARDIZED UTC BACK TO LOCAL NOW THAT WE ENSURED FORMAT
 
                             let date = new Date(confirmedUTC);
                             const letDateAsTS = date.getTime();
