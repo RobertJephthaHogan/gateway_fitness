@@ -147,11 +147,10 @@ export default function Calendar() {
                         // iterate through meal items and add end date for event rendering purposes (15 min after start date)
                         const formattedMeals = mealsMatchingDay?.map((m: any) => {
 
-                            // Time set from form is always utc, ensure it can be parsed as such (includes Z)
+                            // Time set from form is always utc, ensure it can be parsed as such (includes Z) - edge case
                             const confirmedUTC = (m.time.charAt(m.time.length - 1) === 'Z') ? m.time : m.time + 'Z'
 
-                            // TODO: SET STANDARDIZED UTC BACK TO LOCAL NOW THAT WE ENSURED FORMAT
-
+                            // Create UTC start and end dates
                             let date = new Date(confirmedUTC);
                             const letDateAsTS = date.getTime();
                             const dateAsTsPlusFifteenMin = letDateAsTS + 15 * 60 * 1000
@@ -164,7 +163,7 @@ export default function Calendar() {
                             const utcStartDate = dayjs(confirmedUTC).utc();
                             const utcEndDate = dayjs(plusFifteen).utc();
 
-                            // Format the date with the user's timezone offset
+                            // Format the dates with the user's timezone offset
                             const formattedStartDate = utcStartDate.local().format('YYYY-MM-DDTHH:mm:ssZ');
                             const formattedEndDate = utcEndDate.local().format('YYYY-MM-DDTHH:mm:ssZ');          
 
@@ -178,20 +177,30 @@ export default function Calendar() {
                         // iterate through snack items and add end date for event rendering purposes (15 min after start date)
                         const formattedSnacks = snacksMatchingDay.map((m: any) => {
                             
-                            // Time set from form is always utc, ensure it can be parsed as such (includes Z)
+                            // Time set from form is always utc, ensure it can be parsed as such (includes Z) - edge case
                             const confirmedUTC = (m.time.charAt(m.time.length - 1) === 'Z') ? m.time : m.time + 'Z'
 
-                            // TODO: SET STANDARDIZED UTC BACK TO LOCAL NOW THAT WE ENSURED FORMAT
-
+                            // Create UTC start and end dates
                             let date = new Date(confirmedUTC);
                             const letDateAsTS = date.getTime();
                             const dateAsTsPlusFifteenMin = letDateAsTS + 15 * 60 * 1000
-                            const plusFifteen = new Date(dateAsTsPlusFifteenMin).toISOString()
+                            const plusFifteen = new Date(dateAsTsPlusFifteenMin)?.toISOString()
+
+                            // Detect the user's local timezone
+                            const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+                            // Parse the ISO strings and convert it to UTC time
+                            const utcStartDate = dayjs(confirmedUTC).utc();
+                            const utcEndDate = dayjs(plusFifteen).utc();
+
+                            // Format the dates with the user's timezone offset
+                            const formattedStartDate = utcStartDate.local().format('YYYY-MM-DDTHH:mm:ssZ');
+                            const formattedEndDate = utcEndDate.local().format('YYYY-MM-DDTHH:mm:ssZ'); 
 
                             return {
                                 ...m, 
-                                startTime: confirmedUTC,
-                                endTime: plusFifteen
+                                startTime: formattedStartDate,
+                                endTime: formattedEndDate
                             };
                         });
 
