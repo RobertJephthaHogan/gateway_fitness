@@ -58,6 +58,7 @@ const DailySchedule: React.FC<Props> = ({
 
     const confirmDelete = () => {
         message.info('Event Deleted');
+        //TODO: DELETE EVENT HANDLING
     };
 
     let onTheHourTimes : any[] = [];
@@ -198,15 +199,15 @@ const DailySchedule: React.FC<Props> = ({
         // return cell with rendered event tile for a valid time block containing event startTime
         if (isTimeBlockContainingEventStart) { 
             return (
-                <div className='w-100 flex event-tile-wrapper'>
-                    <div className='w-100' style={{height:"60px"}}>
+                <div className='schedule-time-block'>
+                    <div className='offset-wrapper' style={{height:"60px"}}>
                         <div style={{height:eventStartTimeOffsetFromTopOfHour + "px"}} />
                             <div className='w-100 event-tile' style={{height:eventDuration + "px", position: "relative"}}> 
-                            <Row className='flex w-100 space-between pl-2 pr-2'>
+                            <div className='event-tile-content'>
                                 <div>
-                                    <h5>{thisBlocksEvent?.event?.title}</h5>
+                                    <h5 className='event-tile-title'>{thisBlocksEvent?.event?.title}</h5>
                                 </div>
-                                <div>
+                                <div className='event-actions-container'>
                                     <Popconfirm
                                         placement="topRight"
                                         title={"Edit Event Details?"}
@@ -223,23 +224,23 @@ const DailySchedule: React.FC<Props> = ({
                                         okText="Yes"
                                         cancelText="No"
                                     > 
-                                        <DeleteOutlined className='event-beginning-icon ml-1' /> 
+                                        <DeleteOutlined className='event-beginning-icon' /> 
                                     </Popconfirm>
                                 </div>
-                            </Row>
+                            </div>
                         </div>
                     </div>
                 </div>
             )
         } else if (isInactiveTime) { // return cell with inactive time cell styling
             return (
-                <div className=' w-100 event-tile-wrapper' style={{height: "60px"}}>
+                <div className=' w-100 schedule-time-block' style={{height: "60px"}}>
                     <div className='inactiveCourtTime w-100 ' style={{height: "60px"}}></div>
                 </div>
             )
         }  else { // else return empty cell
             return (
-                <div className=' w-100 event-tile-wrapper' style={{height: "60px"}}>
+                <div className=' w-100 schedule-time-block' style={{height: "60px"}}>
                     <div className='w-100 ' style={{height: "60px"}}>
                         <span className='event-time-txt'>
                             {time}
