@@ -161,7 +161,6 @@ const DailySchedule: React.FC<Props> = ({
                     continue
                 }
             }
-            console.log('validEntries', validEntries)
 
             for (let entry in validEntries) {
                 if (validEntries[entry]) {
@@ -172,20 +171,11 @@ const DailySchedule: React.FC<Props> = ({
                     let startTimeString = eventStart.split("T")[1].slice( 0, 6);
                     let endTimeString = eventEnd.split("T")[1].slice( 0, 6);
                     let convertedTime = timeConverter(time, dateString);
-                    eventStartTimeOffsetFromTopOfHour = timeDifferenceInMinutes(eventStart, convertedTime)
-
-                    const startTimeHour = parseInt(startTimeString.split(":")[0], 10)
-                    const timeBlockHour = (parseInt(time.split(":")[0], 10) +12)
-                    
-                    //TODO: ADJUST UTC BACK TO LOCAL DATETIME FOR RENDERING
-
-                    const startTimeMatchTimeBlock : boolean = startTimeHour === timeBlockHour
-                    // console.log('startTimeMatchTimeBlock', startTimeMatchTimeBlock)
-
-                    // if (startTimeMatchTimeBlock) {
-                    //     console.log('eventStartTimeOffsetFromTopOfHour', eventStartTimeOffsetFromTopOfHour)
-                    //     console.log('startTimeHour', startTimeHour)
-                    // }
+                    eventStartTimeOffsetFromTopOfHour = timeDifferenceInMinutes(eventStart, convertedTime) // Find how far the event tile should render from top of time block
+                    let startTimeHour = parseInt(startTimeString.split(":")[0], 10) // Get the events's start tie
+                    startTimeHour = startTimeHour > 12 ? startTimeHour - 12 : startTimeHour // if startTime is in 24 hour time, adjust to 12 hour time for rendering logic
+                    const timeBlockHour = (parseInt(time.split(":")[0], 10)) // Get the timeBlock's hour
+                    const startTimeMatchTimeBlock : boolean = startTimeHour === timeBlockHour // Check if event start time matches time block
 
                     if (
                         (timeDifferenceInMinutes(eventStart, convertedTime) < 60) 
@@ -198,7 +188,6 @@ const DailySchedule: React.FC<Props> = ({
                         )
                         ) {
                         isTimeBlockContainingEventStart = true //triggers cell event render in if else following this
-                        console.log('isTimeBlockContainingEventStart', true)
                         thisBlocksEvent = validEntries[entry] //define a variable for renderers to reference this events info
                         validEntries = validEntries.pop(validEntries[entry]) // only last event cell renders without this
                     } 

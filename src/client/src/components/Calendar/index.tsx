@@ -4,13 +4,15 @@ import { Button, DatePicker } from 'antd'
 import LeftOutlined from '@ant-design/icons/LeftOutlined'
 import RightOutlined from '@ant-design/icons/RightOutlined'
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 import DailySchedule from '../DailySchedule'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
 import mealActions from '../../redux/actions/meal'
 import snackActions from '../../redux/actions/snack'
 
-
+// Extend Day.js with the UTC plugin
+dayjs.extend(utc);
 
 export default function Calendar() {
 
@@ -143,7 +145,7 @@ export default function Calendar() {
 
 
                         // iterate through meal items and add end date for event rendering purposes (15 min after start date)
-                        const formattedMeals = mealsMatchingDay.map((m: any) => {
+                        const formattedMeals = mealsMatchingDay?.map((m: any) => {
 
                             // Time set from form is always utc, ensure it can be parsed as such (includes Z)
                             const confirmedUTC = (m.time.charAt(m.time.length - 1) === 'Z') ? m.time : m.time + 'Z'
@@ -153,14 +155,25 @@ export default function Calendar() {
                             let date = new Date(confirmedUTC);
                             const letDateAsTS = date.getTime();
                             const dateAsTsPlusFifteenMin = letDateAsTS + 15 * 60 * 1000
-                            const plusFifteen = new Date(dateAsTsPlusFifteenMin).toISOString()
+                            const plusFifteen = new Date(dateAsTsPlusFifteenMin)?.toISOString()
+
+                            // Detect the user's local timezone
+                            const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+                            // Parse the ISO strings and convert it to UTC time
+                            const utcStartDate = dayjs(confirmedUTC).utc();
+                            const utcEndDate = dayjs(plusFifteen).utc();
+
+                            // Format the date with the user's timezone offset
+                            const formattedStartDate = utcStartDate.local().format('YYYY-MM-DDTHH:mm:ssZ');
+                            const formattedEndDate = utcEndDate.local().format('YYYY-MM-DDTHH:mm:ssZ');          
 
                             return {
                                 ...m, 
-                                startTime: confirmedUTC,
-                                endTime: plusFifteen
+                                startTime: formattedStartDate,
+                                endTime: formattedEndDate
                             };
-                        });
+                        })|| [];
 
                         // iterate through snack items and add end date for event rendering purposes (15 min after start date)
                         const formattedSnacks = snacksMatchingDay.map((m: any) => {
