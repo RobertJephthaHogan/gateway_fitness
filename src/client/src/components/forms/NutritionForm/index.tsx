@@ -7,6 +7,9 @@ import { store } from '../../../redux/store'
 import mealActions from '../../../redux/actions/meal'
 import snackActions from '../../../redux/actions/snack'
 import PlusOutlined from '@ant-design/icons/PlusOutlined'
+import { mealService } from '../../../services/meal.service'
+import { openNotification } from '../../../helpers/notifications'
+import { snackService } from '../../../services/snack.service'
 
 
 interface NutritionFormProps {
@@ -48,7 +51,28 @@ export default function NutritionForm(props: NutritionFormProps) {
             dto['hasBeenConsumed'] = false
 
         if (formValues.nutritionType === 'meal') {
-            store.dispatch(mealActions.add(dto))
+
+            mealService
+                .createMeal(dto)
+                .then((resp) => {
+                    if (resp) {
+                        openNotification(
+                            resp?.data?.response_type,
+                            `Meal ${resp?.data?.data?._id} Created Successfully`
+                        )
+                        store.dispatch(mealActions.setMeals(currentUser?._id))
+                    } else {
+                        console.log('error adding meal', resp)
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error Creating Meal:', error)
+                    openNotification(
+                        error?.data?.response_type,
+                        `Error Creating Meal ${error?.data?.data?._id}`
+                    )
+                })
+
             setFormValues({
                 'nutritionType': 'meal',
                 'ingredients': [],
@@ -57,7 +81,27 @@ export default function NutritionForm(props: NutritionFormProps) {
         }
 
         if (formValues.nutritionType === 'snack') {
-            store.dispatch(snackActions.add(dto))
+
+            snackService
+                .createSnack(dto)
+                .then((resp) => {
+                    if (resp) {
+                        openNotification(
+                            resp?.data?.response_type,
+                            `Snack ${resp?.data?.data?._id} Created Successfully`
+                        )
+                    } else {
+                        console.log('error creating snack entry')
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error Creating Snack:', error)
+                    openNotification(
+                        error?.data?.response_type,
+                        `Error Creating Snack ${error?.data?.data?._id}`
+                    )
+                })
+
             setFormValues({
                 'nutritionType': 'meal',
                 'ingredients': [],
