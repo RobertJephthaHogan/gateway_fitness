@@ -58,6 +58,7 @@ const DailySchedule: React.FC<Props> = ({
 
     const confirmDelete = () => {
         message.info('Event Deleted');
+        //TODO: DELETE EVENT HANDLING
     };
 
     let onTheHourTimes : any[] = [];
@@ -115,8 +116,8 @@ const DailySchedule: React.FC<Props> = ({
                     {
                         startDateTime: entry.startTime,
                         endDateTime: entry.endTime,
-                        isValidDailyTimeRange:  Date.parse(entry.startTime) < Date.parse(entry.endTime) && entry.startTime.split("T")[0] === entry.endTime.split("T")[0],
-                        eventLengthInMinutes : timeDifferenceInMinutes(entry.startDateTime, entry.endDateTime),
+                        isValidDailyTimeRange:  (Date.parse(entry.startTime) < Date.parse(entry.endTime)) && (entry.startTime.split("T")[0] === entry.endTime.split("T")[0]),
+                        eventLengthInMinutes : timeDifferenceInMinutes(entry.startTime, entry.endTime),
                         event: entry
                     }
             )) || []
@@ -168,14 +169,24 @@ const DailySchedule: React.FC<Props> = ({
                     eventDuration = validEntries[entry].eventLengthInMinutes;
                     let eventEnd = validEntries[entry].endDateTime;
                     let dateString = eventStart.split("T")[0];
-                    let startTimeString = eventStart.split("T")[1].slice( 0, -3);
-                    let endTimeString = eventEnd.split("T")[1].slice( 0, -3);
+                    let startTimeString = eventStart.split("T")[1].slice( 0, 6);
+                    let endTimeString = eventEnd.split("T")[1].slice( 0, 6);
                     let convertedTime = timeConverter(time, dateString);
-                    eventStartTimeOffsetFromTopOfHour = timeDifferenceInMinutes(eventStart, convertedTime)
+                    eventStartTimeOffsetFromTopOfHour = timeDifferenceInMinutes(eventStart, convertedTime) // Find how far the event tile should render from top of time block
+                    let startTimeHour = parseInt(startTimeString.split(":")[0], 10) // Get the events's start tie
+                    startTimeHour = startTimeHour > 12 ? startTimeHour - 12 : startTimeHour // if startTime is in 24 hour time, adjust to 12 hour time for rendering logic
+                    const timeBlockHour = (parseInt(time.split(":")[0], 10)) // Get the timeBlock's hour
+                    const startTimeMatchTimeBlock : boolean = startTimeHour === timeBlockHour // Check if event start time matches time block
 
                     if (
-                        (timeDifferenceInMinutes(eventStart, convertedTime) < 60) && 
-                        ((startTimeString[1] === time[1]) || (parseInt(startTimeString.split(":")[0], 0) === (parseInt(time.split(":")[0], 10) +12)))
+                        (timeDifferenceInMinutes(eventStart, convertedTime) < 60) 
+                        && 
+                        (
+                            // (startTimeString[1] === time[1]) || 
+                            (
+                                startTimeMatchTimeBlock
+                            )
+                        )
                         ) {
                         isTimeBlockContainingEventStart = true //triggers cell event render in if else following this
                         thisBlocksEvent = validEntries[entry] //define a variable for renderers to reference this events info
@@ -188,15 +199,15 @@ const DailySchedule: React.FC<Props> = ({
         // return cell with rendered event tile for a valid time block containing event startTime
         if (isTimeBlockContainingEventStart) { 
             return (
-                <div className='w-100 flex event-tile-wrapper'>
-                    <div className='w-100' style={{height:"60px"}}>
+                <div className='schedule-time-block'>
+                    <div className='offset-wrapper' style={{height:"60px"}}>
                         <div style={{height:eventStartTimeOffsetFromTopOfHour + "px"}} />
                             <div className='w-100 event-tile' style={{height:eventDuration + "px", position: "relative"}}> 
-                            <Row className='flex w-100 space-between pl-2 pr-2'>
+                            <div className='event-tile-content'>
                                 <div>
-                                    <h5>{thisBlocksEvent?.event?.title}</h5>
+                                    <h5 className='event-tile-title'>{thisBlocksEvent?.event?.title}</h5>
                                 </div>
-                                <div>
+                                <div className='event-actions-container'>
                                     <Popconfirm
                                         placement="topRight"
                                         title={"Edit Event Details?"}
@@ -213,23 +224,23 @@ const DailySchedule: React.FC<Props> = ({
                                         okText="Yes"
                                         cancelText="No"
                                     > 
-                                        <DeleteOutlined className='event-beginning-icon ml-1' /> 
+                                        <DeleteOutlined className='event-beginning-icon' /> 
                                     </Popconfirm>
                                 </div>
-                            </Row>
+                            </div>
                         </div>
                     </div>
                 </div>
             )
         } else if (isInactiveTime) { // return cell with inactive time cell styling
             return (
-                <div className=' w-100 event-tile-wrapper' style={{height: "60px"}}>
+                <div className=' w-100 schedule-time-block' style={{height: "60px"}}>
                     <div className='inactiveCourtTime w-100 ' style={{height: "60px"}}></div>
                 </div>
             )
         }  else { // else return empty cell
             return (
-                <div className=' w-100 event-tile-wrapper' style={{height: "60px"}}>
+                <div className=' w-100 schedule-time-block' style={{height: "60px"}}>
                     <div className='w-100 ' style={{height: "60px"}}>
                         <span className='event-time-txt'>
                             {time}

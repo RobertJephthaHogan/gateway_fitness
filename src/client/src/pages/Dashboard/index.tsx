@@ -15,6 +15,12 @@ export default function Dashboard() {
                     <NutritionCard/>
                 </div>
             </div>
+            <div style={{height: '1000px'}}>
+                {/* 
+                    Space to confirm dashboard scroll until 
+                    this space is needed
+                */}
+            </div>
         </div>
     )
 }
