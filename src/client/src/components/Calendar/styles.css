@@ -48,10 +48,14 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .date-cell-text {
     color: #ffffff;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
 }
 
 .calendar-body {
