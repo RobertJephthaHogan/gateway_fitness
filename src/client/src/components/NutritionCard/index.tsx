@@ -365,7 +365,7 @@ export default function NutritionCard() {
                 <div className='nutrition-card-topbar'>
                     <div className='nc-topbar-left'>
                         <span className='nc-tb-text nc-tb-title'>Today's Nutrients</span>
-                        <span className='nc-tb-text nc-tb-sub'>Calories Planned : 2750</span>
+                        <span className='nc-tb-text nc-tb-sub'>Calories Planned : {nutrientStatus?.totalNutrients?.calories}</span>
                         <span className='nc-tb-text nc-tb-sub'>Meals Planned: {selectedDatesNutrients?.length} </span>
                     </div>
                     <div className='nc-topbar-right'>
