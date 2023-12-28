@@ -34,6 +34,8 @@
  :root {
     --primary-red: #ff4242;
     --secondary-red: #cd3535;
+    --primary-blue: #1890FF;
+    --secondary-blue: #146cbd;
     --layout-header-height: 60px;
     --layout-header-height-w-border: 61px;
 

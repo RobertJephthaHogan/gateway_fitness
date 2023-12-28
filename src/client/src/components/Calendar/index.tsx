@@ -170,7 +170,9 @@ export default function Calendar() {
                             return {
                                 ...m, 
                                 startTime: formattedStartDate,
-                                endTime: formattedEndDate
+                                endTime: formattedEndDate,
+                                eventType: 'meal'
+
                             };
                         })|| [];
 
@@ -200,7 +202,8 @@ export default function Calendar() {
                             return {
                                 ...m, 
                                 startTime: formattedStartDate,
-                                endTime: formattedEndDate
+                                endTime: formattedEndDate,
+                                eventType: 'snack'
                             };
                         });
 

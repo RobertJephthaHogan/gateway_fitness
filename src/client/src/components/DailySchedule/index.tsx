@@ -11,6 +11,9 @@ import dayjs from 'dayjs'
 import React, { useEffect, useState } from 'react';
 
 import './styles.css'
+import { store } from '../../redux/store';
+import mealActions from '../../redux/actions/meal';
+import snackActions from '../../redux/actions/snack';
 
 type Props = {
   selectedCalendarDate?: any;
@@ -56,9 +59,16 @@ const DailySchedule: React.FC<Props> = ({
         setIsModalVisible(true)
     };
 
-    const confirmDelete = () => {
-        message.info('Event Deleted');
-        //TODO: DELETE EVENT HANDLING
+    const confirmDelete = (eventData: any) => {
+
+        if (eventData.type === 'meal') {
+            store.dispatch(mealActions.delete(eventData.id))
+        }
+
+        if (eventData.type === 'snack') {
+            store.dispatch(snackActions.delete(eventData.id))
+        }
+
     };
 
     let onTheHourTimes : any[] = [];
@@ -127,13 +137,15 @@ const DailySchedule: React.FC<Props> = ({
     const timesArray = timesGenerator(); //times generator needs to be called by this point for proper variables to be set, even if timesArray is not used
     const timesObjArray = timesArray.map((date: any) => ({ 'time' : date}));
     const hoursObjArray = onTheHourTimes.map((date: any) => ({ 'time' : date}));
-    let eventStartTimeOffsetFromTopOfHour : any;
+    
 
 
     const TimeCellRenderer = ({time, eventsOnSelectedDay} : any) => {
+        let eventStartTimeOffsetFromTopOfHour : any;
         let eventEntries;
         let isTimeBlockContainingEventStart = false;
         let thisBlocksEvent;
+        let timeBlockEvents : any = [];
         let isInactiveTime = false;
         let eventDuration;
 
@@ -155,6 +167,7 @@ const DailySchedule: React.FC<Props> = ({
         if (eventsOnSelectedDay?.length) {
             eventEntries =  getSelectedEventsIfExist()
             
+            // filter for valid event entries
             for (let item in eventEntries) {
                 let isValidEvent = eventEntries[item].isValidDailyTimeRange;
                 if (isValidEvent) {
@@ -162,6 +175,7 @@ const DailySchedule: React.FC<Props> = ({
                     continue
                 }
             }
+
 
             for (let entry in validEntries) {
                 if (validEntries[entry]) {
@@ -180,55 +194,93 @@ const DailySchedule: React.FC<Props> = ({
 
                     if (
                         (timeDifferenceInMinutes(eventStart, convertedTime) < 60) 
-                        && 
-                        (
-                            // (startTimeString[1] === time[1]) || 
-                            (
-                                startTimeMatchTimeBlock
-                            )
-                        )
+                        && startTimeMatchTimeBlock
                         ) {
                         isTimeBlockContainingEventStart = true //triggers cell event render in if else following this
                         thisBlocksEvent = validEntries[entry] //define a variable for renderers to reference this events info
-                        validEntries = validEntries.pop(validEntries[entry]) // only last event cell renders without this
+                        
+                        const thisEvent = validEntries[entry]
+
+                        // this events data with render values
+                        const eventData = {
+                            ...thisEvent,
+                            eventStartTimeOffsetFromTopOfHour,
+                            eventDuration,
+                        }
+
+                        timeBlockEvents.push(eventData)
+
+                        // legacy - keep for debugging - single event render 
+                        //validEntries = validEntries.pop(validEntries[entry]) // only last event cell renders without this with legacy logic
                     } 
                 }
             } 
         }
+
 
         // return cell with rendered event tile for a valid time block containing event startTime
         if (isTimeBlockContainingEventStart) { 
             return (
                 <div className='schedule-time-block'>
                     <div className='offset-wrapper' style={{height:"60px"}}>
-                        <div style={{height:eventStartTimeOffsetFromTopOfHour + "px"}} />
-                            <div className='w-100 event-tile' style={{height:eventDuration + "px", position: "relative"}}> 
-                            <div className='event-tile-content'>
-                                <div>
-                                    <h5 className='event-tile-title'>{thisBlocksEvent?.event?.title}</h5>
-                                </div>
-                                <div className='event-actions-container'>
-                                    <Popconfirm
-                                        placement="topRight"
-                                        title={"Edit Event Details?"}
-                                        onConfirm={confirmEdit}
-                                        okText="Yes"
-                                        cancelText="No"
-                                    > 
-                                        <EditOutlined className='event-beginning-icon' />
-                                    </Popconfirm>
-                                    <Popconfirm
-                                        placement="topRight"
-                                        title={"Are you sure you want to delete this event?"}
-                                        onConfirm={confirmDelete}
-                                        okText="Yes"
-                                        cancelText="No"
-                                    > 
-                                        <DeleteOutlined className='event-beginning-icon' /> 
-                                    </Popconfirm>
-                                </div>
-                            </div>
-                        </div>
+                        
+
+                        {
+                            timeBlockEvents?.map((evt: any, i: number) => {
+
+                                return (
+                                    <div
+                                        style={{
+                                            position: 'absolute',
+                                            // If the event is not the first in the time block, offset it from the top of the div
+                                            top: i != 0 ? evt.eventStartTimeOffsetFromTopOfHour + "px" : 'unset',
+                                            width: '100%',
+                                        }}
+                                        key={`evt.event?.title-${i}`}
+                                    >
+                                        {
+                                            // If the event is the first in the time block, render space for minutes before event
+                                            i === 0 && <div style={{height:evt.eventStartTimeOffsetFromTopOfHour + "px"}} />
+                                        }
+                                        <div 
+                                            className='w-100 event-tile' 
+                                            style={{
+                                                height:evt.eventDuration + "px", 
+                                                position: "relative",
+                                            }}
+                                        > 
+                                            <div className='event-tile-content'>
+                                                <div>
+                                                    <h5 className='event-tile-title'>{evt.event?.title}</h5>
+                                                </div>
+                                                <div className='event-actions-container'>
+                                                    <Popconfirm
+                                                        placement="topRight"
+                                                        title={"Edit Event Details?"}
+                                                        onConfirm={confirmEdit}
+                                                        okText="Yes"
+                                                        cancelText="No"
+                                                    > 
+                                                        <EditOutlined className='event-beginning-icon' />
+                                                    </Popconfirm>
+                                                    <Popconfirm
+                                                        placement="topRight"
+                                                        title={"Are you sure you want to delete this event?"}
+                                                        onConfirm={() => confirmDelete(evt?.event)}
+                                                        okText="Yes"
+                                                        cancelText="No"
+                                                    > 
+                                                        <DeleteOutlined className='event-beginning-icon' /> 
+                                                    </Popconfirm>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+
+                            }) || []
+                        }
+
                     </div>
                 </div>
             )

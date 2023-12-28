@@ -6,7 +6,7 @@ import CheckOutlined from '@ant-design/icons/CheckOutlined'
 import EditOutlined from '@ant-design/icons/EditOutlined'
 import DeleteOutlined from '@ant-design/icons/DeleteOutlined'
 import UndoOutlined from '@ant-design/icons/UndoOutlined'
-import { Button, Dropdown, MenuProps, Modal, Progress, Tag, message } from 'antd'
+import { Button, Dropdown, Empty, MenuProps, Modal, Progress, Tag, message } from 'antd'
 import NutritionForm from '../forms/NutritionForm'
 import { useSelector } from 'react-redux'
 import { store } from '../../redux/store'
@@ -332,9 +332,30 @@ export default function NutritionCard() {
         })
 
         return (
-            <div className='nutrition-rows-container'>
-                {rows}
-            </div>
+            props.nutritionItems?.length 
+            ? (
+                <div className='nutrition-rows-container'>
+                    {rows}
+                </div>
+            )
+            : (
+                <div className='nutrition-rows-container empty-nrc'>
+                    <Empty
+                        description={
+                            <span>
+                                No Meal or Snack items scheduled for today. <br/>
+                                <span
+                                    onClick={() => setEntryModalOpen(true)}
+                                    className='add-nutrition-text'
+                                >
+                                    Add One?
+                                </span>
+                                
+                            </span>
+                          }
+                    />
+                </div>
+            )
         )
     }
 
@@ -344,7 +365,7 @@ export default function NutritionCard() {
                 <div className='nutrition-card-topbar'>
                     <div className='nc-topbar-left'>
                         <span className='nc-tb-text nc-tb-title'>Today's Nutrients</span>
-                        <span className='nc-tb-text nc-tb-sub'>Calories Planned : 2750</span>
+                        <span className='nc-tb-text nc-tb-sub'>Calories Planned : {nutrientStatus?.totalNutrients?.calories}</span>
                         <span className='nc-tb-text nc-tb-sub'>Meals Planned: {selectedDatesNutrients?.length} </span>
                     </div>
                     <div className='nc-topbar-right'>
