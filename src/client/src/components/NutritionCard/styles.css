@@ -171,6 +171,17 @@
     flex-grow: 1;
 }
 
+.add-nutrition-text {
+    cursor: pointer;
+    color: var(--primary-blue);
+}
+
+.empty-nrc {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .nutrition-row-macro-item {
     display: flex;
     justify-content: center;
