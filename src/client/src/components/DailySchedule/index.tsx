@@ -11,6 +11,9 @@ import dayjs from 'dayjs'
 import React, { useEffect, useState } from 'react';
 
 import './styles.css'
+import { store } from '../../redux/store';
+import mealActions from '../../redux/actions/meal';
+import snackActions from '../../redux/actions/snack';
 
 type Props = {
   selectedCalendarDate?: any;
@@ -56,9 +59,16 @@ const DailySchedule: React.FC<Props> = ({
         setIsModalVisible(true)
     };
 
-    const confirmDelete = () => {
-        message.info('Event Deleted');
-        //TODO: DELETE EVENT HANDLING
+    const confirmDelete = (eventData: any) => {
+
+        if (eventData.type === 'meal') {
+            store.dispatch(mealActions.delete(eventData.id))
+        }
+
+        if (eventData.type === 'snack') {
+            store.dispatch(snackActions.delete(eventData.id))
+        }
+
     };
 
     let onTheHourTimes : any[] = [];
@@ -256,7 +266,7 @@ const DailySchedule: React.FC<Props> = ({
                                                     <Popconfirm
                                                         placement="topRight"
                                                         title={"Are you sure you want to delete this event?"}
-                                                        onConfirm={confirmDelete}
+                                                        onConfirm={() => confirmDelete(evt?.event)}
                                                         okText="Yes"
                                                         cancelText="No"
                                                     > 
