@@ -9,6 +9,7 @@ from app.models.User import User
 from app.models.Meal import Meal
 from app.models.Snack import Snack
 from app.models.Workout import Workout
+from app.models.WorkoutRoutine import WorkoutRoutine
 
 
 
@@ -40,5 +41,6 @@ async def initiate_database():
                                             User,
                                             Meal,
                                             Snack,
-                                            Workout
+                                            Workout,
+                                            WorkoutRoutine
                                         ])

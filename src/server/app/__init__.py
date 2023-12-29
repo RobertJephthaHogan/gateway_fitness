@@ -2,10 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .config import initiate_database
 
-from app.services.user import router as UserRouter
-from app.services.meal import router as MealRouter
-from app.services.snack import router as SnackRouter
-from app.services.workout import router as WorkoutRouter
+from app.services.user.routes import router as UserRouter
+from app.services.meal.routes import router as MealRouter
+from app.services.snack.routes import router as SnackRouter
+from app.services.workout.routes import router as WorkoutRouter
 
 
 # Create the App
