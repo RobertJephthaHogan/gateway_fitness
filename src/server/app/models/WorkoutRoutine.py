@@ -1,20 +1,19 @@
-import datetime
-from typing import Optional, Any
 from beanie import Document
-from pydantic import BaseModel, EmailStr, Field
+from typing import Optional
+from pydantic import BaseModel, Field
 
 
-class Workout(Document):
+
+class WorkoutRoutine(Document):
     id: Optional[str] = Field(...)
     title: Optional[str] = Field(...)
     exercises: Optional[list] = Field(...)
     createdByUserId: str = Field(...)
-    time: datetime.datetime = Field(...)
     type: Optional[str] = Field(...)
     
     class Settings:
-        name = "Workout"
-
+        name = "WorkoutRoutine"
+        
     class Config:
         schema_extra = {
             "example": {
@@ -22,18 +21,16 @@ class Workout(Document):
                 "title": 'Pull Day',
                 "exercises": [],
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
-                "time": "2022-12-22T16:09:23.443Z",
                 "type": "gym-routine"
             }
         }
+        
 
-
-class UpdateWorkoutModel(BaseModel):
+class UpdateWorkoutRoutineModel(BaseModel):
     id: Optional[str]
     title: Optional[str] 
     exercises: Optional[list]
     createdByUserId: Optional[str]
-    time: Optional[datetime.datetime]
     type: Optional[str] 
 
     class Config:
@@ -43,7 +40,6 @@ class UpdateWorkoutModel(BaseModel):
                 "title": 'Push Day',
                 "exercises": [],
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
-                "time": "2022-12-22T16:09:23.443Z",
                 "type": "gym-routine"
             }
         }
