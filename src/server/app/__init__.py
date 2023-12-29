@@ -6,6 +6,7 @@ from app.services.user.routes import router as UserRouter
 from app.services.meal.routes import router as MealRouter
 from app.services.snack.routes import router as SnackRouter
 from app.services.workout.routes import router as WorkoutRouter
+from app.services.workout_routine.routes import router as WorkoutRoutineRouter
 
 
 # Create the App
@@ -46,3 +47,4 @@ app.include_router(UserRouter, tags=["User"], prefix="/user")
 app.include_router(MealRouter, tags=["Meal"], prefix="/meal")
 app.include_router(SnackRouter, tags=["Snack"], prefix="/snack")
 app.include_router(WorkoutRouter, tags=["Workout"], prefix="/workout")
+app.include_router(WorkoutRoutineRouter, tags=["Workout Routine"], prefix="/routine")
