@@ -10,7 +10,7 @@ class Workout(Document):
     exercises: Optional[list] = Field(...)
     createdByUserId: str = Field(...)
     time: datetime.datetime = Field(...)
-    
+    type: Optional[str] = Field(...)
     
     class Settings:
         name = "Workout"
@@ -23,6 +23,7 @@ class Workout(Document):
                 "exercises": [],
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
                 "time": "2022-12-22T16:09:23.443Z",
+                "type": "gym-routine"
             }
         }
 
@@ -33,6 +34,7 @@ class UpdateWorkoutModel(BaseModel):
     exercises: Optional[list]
     createdByUserId: Optional[str]
     time: Optional[datetime.datetime]
+    type: Optional[str] 
 
     class Config:
         schema_extra = {
@@ -42,6 +44,7 @@ class UpdateWorkoutModel(BaseModel):
                 "exercises": [],
                 "createdByUserId": "wwv45yw4gw45w76nr657eu",
                 "time": "2022-12-22T16:09:23.443Z",
+                "type": "gym-routine"
             }
         }
 
