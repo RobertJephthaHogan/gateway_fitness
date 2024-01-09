@@ -15,6 +15,7 @@ app = FastAPI()
 # Apply CORS Middleware / Allow Origins
 origins = [ 
            'http://localhost:3000',
+           'http://localhost:8081',
            'http://localhost:3003',
            'https://gateway-fitness.roberthogan.io',
            'https://www.gateway-fitness.roberthogan.io' 
